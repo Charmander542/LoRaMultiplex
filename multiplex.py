@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Lora Receive Realtime
-# Generated: Tue Jul 15 13:27:44 2025
+# Generated: Tue Jul 15 14:07:53 2025
 ##################################################
 
 if __name__ == '__main__':
@@ -34,9 +34,10 @@ from recenter import recenter  # grc-generated hier_block
 import lora
 import osmosdr
 import wx
+# EDIT: Import pmt for message handling
 import pmt
 
-# Custom block to count messages and update the GUI
+# EDIT: Add the custom block for counting messages.
 class MessageCounter(gr.basic_block):
     """
     A block that counts incoming messages, prints the count,
@@ -80,29 +81,30 @@ class lora_receive_realtime(grc_wxgui.top_block_gui):
         self.samp_rate = samp_rate = 1e6
         self.bw = bw = 125000
         self.target_freq = target_freq = 910.3e6
-        self.symbols_per_sec = symbols_per_sec = float(self.bw) / (2**self.sf)
-        self.firdes_tap = firdes_tap = firdes.low_pass(1, self.samp_rate, self.bw, 10000, firdes.WIN_HAMMING, 6.67)
+        self.symbols_per_sec = symbols_per_sec = float(bw) / (2**sf)
+        self.samp_rate0 = samp_rate0 = 500e3
+        self.firdes_tap = firdes_tap = firdes.low_pass(1, samp_rate, bw, 10000, firdes.WIN_HAMMING, 6.67)
         self.downlink = downlink = False
         self.decimation = decimation = 1
-        self.cutoff = cutoff = 500e3
+        self.cutoff = cutoff = 250e3
         self.capture_freq = capture_freq = 910e6
-        self.bitrate = bitrate = self.sf * (1 / (2**self.sf / float(self.bw)))
+        self.bitrate = bitrate = sf * (1 / (2**sf / float(bw)))
 
         ##################################################
         # Blocks
         ##################################################
+        # EDIT: Set up a sizer to manage the GUI layout
         self.main_sizer = wx.BoxSizer(wx.VERTICAL)
-        # FIX: Call SetSizer on the GUI window (self.GetWin()), not the flowgraph (self).
         self.GetWin().SetSizer(self.main_sizer)
 
         self.wxgui_fftsink2_1 = fftsink2.fft_sink_c(
         	self.GetWin(),
-        	baseband_freq=self.capture_freq,
+        	baseband_freq=target_freq,
         	y_per_div=10,
         	y_divs=10,
         	ref_level=0,
         	ref_scale=2.0,
-        	sample_rate=self.samp_rate,
+        	sample_rate=samp_rate,
         	fft_size=1024,
         	fft_rate=15,
         	average=False,
@@ -110,92 +112,96 @@ class lora_receive_realtime(grc_wxgui.top_block_gui):
         	title='FFT Plot',
         	peak_hold=False,
         )
+        # EDIT: Add the FFT plot to the sizer instead of the top-level window
         self.main_sizer.Add(self.wxgui_fftsink2_1.win, 1, wx.EXPAND)
 
+        # EDIT: Create and add the counter label to the sizer
         self.counter_label = wx.StaticText(self.GetWin(), label="LoRa Messages Received: 0", style=wx.ALIGN_CENTRE)
         self.main_sizer.Add(self.counter_label, 0, wx.ALL | wx.EXPAND, 5)
 
         self.rtlsdr_source_0 = osmosdr.source( args="numchan=" + str(1) + " " + '' )
-        self.rtlsdr_source_0.set_sample_rate(self.samp_rate)
-        self.rtlsdr_source_0.set_center_freq(self.capture_freq, 0)
+        self.rtlsdr_source_0.set_sample_rate(samp_rate)
+        self.rtlsdr_source_0.set_center_freq(capture_freq, 0)
         self.rtlsdr_source_0.set_freq_corr(0, 0)
         self.rtlsdr_source_0.set_dc_offset_mode(0, 0)
         self.rtlsdr_source_0.set_iq_balance_mode(0, 0)
         self.rtlsdr_source_0.set_gain_mode(False, 0)
-        self.rtlsdr_source_0.set_gain(10, 0)
+        self.rtlsdr_source_0.set_gain(20, 0)
         self.rtlsdr_source_0.set_if_gain(20, 0)
         self.rtlsdr_source_0.set_bb_gain(20, 0)
         self.rtlsdr_source_0.set_antenna('', 0)
         self.rtlsdr_source_0.set_bandwidth(0, 0)
 
         self.recenter_0_0_6 = recenter(
-            cutoff=self.cutoff,
+            cutoff=cutoff,
             decim=1,
             htd_offset=700e3,
-            samp_rate0=self.samp_rate,
+            samp_rate0=samp_rate0,
         )
         self.recenter_0_0_5 = recenter(
-            cutoff=self.cutoff,
+            cutoff=cutoff,
             decim=1,
             htd_offset=-700e3,
-            samp_rate0=self.samp_rate,
+            samp_rate0=samp_rate0,
         )
         self.recenter_0_0_4 = recenter(
-            cutoff=self.cutoff,
+            cutoff=cutoff,
             decim=1,
             htd_offset=500e3,
-            samp_rate0=self.samp_rate,
+            samp_rate0=samp_rate0,
         )
         self.recenter_0_0_3 = recenter(
-            cutoff=self.cutoff,
+            cutoff=cutoff,
             decim=1,
             htd_offset=-500e3,
-            samp_rate0=self.samp_rate,
+            samp_rate0=samp_rate0,
         )
         self.recenter_0_0_2 = recenter(
-            cutoff=self.cutoff,
+            cutoff=cutoff,
             decim=1,
             htd_offset=300e3,
-            samp_rate0=self.samp_rate,
+            samp_rate0=samp_rate0,
         )
         self.recenter_0_0_1 = recenter(
-            cutoff=self.cutoff,
+            cutoff=cutoff,
             decim=1,
             htd_offset=-300e3,
-            samp_rate0=self.samp_rate,
+            samp_rate0=samp_rate0,
         )
         self.recenter_0_0_0 = recenter(
-            cutoff=self.cutoff,
+            cutoff=cutoff,
             decim=1,
             htd_offset=100e3,
-            samp_rate0=self.samp_rate,
+            samp_rate0=samp_rate0,
         )
         self.recenter_0_0 = recenter(
-            cutoff=self.cutoff,
+            cutoff=cutoff,
             decim=1,
             htd_offset=-100e3,
-            samp_rate0=self.samp_rate,
+            samp_rate0=samp_rate0,
         )
         self.recenter_0 = recenter(
-            cutoff=self.cutoff,
+            cutoff=cutoff,
             decim=1,
             htd_offset=0,
-            samp_rate0=self.samp_rate,
+            samp_rate0=samp_rate0,
         )
         self.lora_message_socket_sink_0 = lora.message_socket_sink('127.0.0.1', 40868, 0)
-        self.lora_lora_receiver_0_0_3 = lora.lora_receiver(1e6, self.capture_freq, ([self.target_freq]), self.bw, 12, False, 4, True, False, self.downlink, self.decimation, False, False)
-        self.lora_lora_receiver_0_0_2 = lora.lora_receiver(1e6, self.capture_freq, ([self.target_freq]), self.bw, self.sf, False, 4, True, False, self.downlink, self.decimation, False, False)
-        self.lora_lora_receiver_0_0_1 = lora.lora_receiver(1e6, self.capture_freq, ([self.target_freq]), self.bw, 10, False, 4, True, False, self.downlink, self.decimation, False, False)
-        self.lora_lora_receiver_0_0_0 = lora.lora_receiver(1e6, self.capture_freq, ([self.target_freq]), self.bw, 9, False, 4, True, False, self.downlink, self.decimation, False, False)
-        self.lora_lora_receiver_0_0 = lora.lora_receiver(1e6, self.capture_freq, ([self.target_freq]), self.bw, 8, False, 4, True, False, self.downlink, self.decimation, False, False)
-        self.lora_lora_receiver_0 = lora.lora_receiver(1e6, self.capture_freq, ([self.target_freq]), self.bw, 7, False, 4, True, False, self.downlink, self.decimation, False, False)
+        self.lora_lora_receiver_0_0_3 = lora.lora_receiver(1e6, capture_freq, ([target_freq]), bw, 12, False, 4, True, False, downlink, decimation, False, False)
+        self.lora_lora_receiver_0_0_2 = lora.lora_receiver(1e6, capture_freq, ([target_freq]), bw, sf, False, 4, True, False, downlink, decimation, False, False)
+        self.lora_lora_receiver_0_0_1 = lora.lora_receiver(1e6, capture_freq, ([target_freq]), bw, 10, False, 4, True, False, downlink, decimation, False, False)
+        self.lora_lora_receiver_0_0_0 = lora.lora_receiver(1e6, capture_freq, ([target_freq]), bw, 9, False, 4, True, False, downlink, decimation, False, False)
+        self.lora_lora_receiver_0_0 = lora.lora_receiver(1e6, capture_freq, ([target_freq]), bw, 8, False, 4, True, False, downlink, decimation, False, False)
+        self.lora_lora_receiver_0 = lora.lora_receiver(1e6, capture_freq, ([target_freq]), bw, 7, False, 4, True, False, downlink, decimation, False, False)
         self.blocks_add_xx_0 = blocks.add_vcc(1)
 
+        # EDIT: Instantiate the message counter, passing it the GUI label
         self.message_counter_0 = MessageCounter(self.counter_label)
 
         ##################################################
         # Connections
         ##################################################
+        # EDIT: Reroute messages through the counter
         self.msg_connect((self.lora_lora_receiver_0, 'frames'), (self.message_counter_0, 'in'))
         self.msg_connect((self.lora_lora_receiver_0_0, 'frames'), (self.message_counter_0, 'in'))
         self.msg_connect((self.lora_lora_receiver_0_0_0, 'frames'), (self.message_counter_0, 'in'))
@@ -203,6 +209,7 @@ class lora_receive_realtime(grc_wxgui.top_block_gui):
         self.msg_connect((self.lora_lora_receiver_0_0_2, 'frames'), (self.message_counter_0, 'in'))
         self.msg_connect((self.lora_lora_receiver_0_0_3, 'frames'), (self.message_counter_0, 'in'))
 
+        # EDIT: Connect the counter's output to the original socket sink
         self.msg_connect((self.message_counter_0, 'out'), (self.lora_message_socket_sink_0, 'in'))
 
         self.connect((self.blocks_add_xx_0, 0), (self.lora_lora_receiver_0, 0))
@@ -247,15 +254,6 @@ class lora_receive_realtime(grc_wxgui.top_block_gui):
         self.samp_rate = samp_rate
         self.wxgui_fftsink2_1.set_sample_rate(self.samp_rate)
         self.rtlsdr_source_0.set_sample_rate(self.samp_rate)
-        self.recenter_0_0_6.set_samp_rate0(self.samp_rate)
-        self.recenter_0_0_5.set_samp_rate0(self.samp_rate)
-        self.recenter_0_0_4.set_samp_rate0(self.samp_rate)
-        self.recenter_0_0_3.set_samp_rate0(self.samp_rate)
-        self.recenter_0_0_2.set_samp_rate0(self.samp_rate)
-        self.recenter_0_0_1.set_samp_rate0(self.samp_rate)
-        self.recenter_0_0_0.set_samp_rate0(self.samp_rate)
-        self.recenter_0_0.set_samp_rate0(self.samp_rate)
-        self.recenter_0.set_samp_rate0(self.samp_rate)
         self.set_firdes_tap(firdes.low_pass(1, self.samp_rate, self.bw, 10000, firdes.WIN_HAMMING, 6.67))
 
     def get_bw(self):
@@ -272,12 +270,28 @@ class lora_receive_realtime(grc_wxgui.top_block_gui):
 
     def set_target_freq(self, target_freq):
         self.target_freq = target_freq
+        self.wxgui_fftsink2_1.set_baseband_freq(self.target_freq)
 
     def get_symbols_per_sec(self):
         return self.symbols_per_sec
 
     def set_symbols_per_sec(self, symbols_per_sec):
         self.symbols_per_sec = symbols_per_sec
+
+    def get_samp_rate0(self):
+        return self.samp_rate0
+
+    def set_samp_rate0(self, samp_rate0):
+        self.samp_rate0 = samp_rate0
+        self.recenter_0_0_6.set_samp_rate0(self.samp_rate0)
+        self.recenter_0_0_5.set_samp_rate0(self.samp_rate0)
+        self.recenter_0_0_4.set_samp_rate0(self.samp_rate0)
+        self.recenter_0_0_3.set_samp_rate0(self.samp_rate0)
+        self.recenter_0_0_2.set_samp_rate0(self.samp_rate0)
+        self.recenter_0_0_1.set_samp_rate0(self.samp_rate0)
+        self.recenter_0_0_0.set_samp_rate0(self.samp_rate0)
+        self.recenter_0_0.set_samp_rate0(self.samp_rate0)
+        self.recenter_0.set_samp_rate0(self.samp_rate0)
 
     def get_firdes_tap(self):
         return self.firdes_tap
@@ -317,7 +331,6 @@ class lora_receive_realtime(grc_wxgui.top_block_gui):
 
     def set_capture_freq(self, capture_freq):
         self.capture_freq = capture_freq
-        self.wxgui_fftsink2_1.set_baseband_freq(self.capture_freq)
         self.rtlsdr_source_0.set_center_freq(self.capture_freq, 0)
 
     def get_bitrate(self):
