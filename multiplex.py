@@ -34,10 +34,9 @@ from recenter import recenter  # grc-generated hier_block
 import lora
 import osmosdr
 import wx
-# EDIT: Import the pmt library for message handling
 import pmt
 
-# EDIT: Add a custom block to count messages and update the GUI
+# Custom block to count messages and update the GUI
 class MessageCounter(gr.basic_block):
     """
     A block that counts incoming messages, prints the count,
@@ -60,11 +59,11 @@ class MessageCounter(gr.basic_block):
         """This function is called when a message is received."""
         self.count += 1
         label_text = "LoRa Messages Received: %d" % self.count
-        
+
         # Use CallAfter for thread-safe GUI updates
         if self.gui_label:
             wx.CallAfter(self.gui_label.SetLabel, label_text)
-        
+
         print label_text
         self.message_port_pub(pmt.intern('out'), msg)
 
@@ -81,29 +80,28 @@ class lora_receive_realtime(grc_wxgui.top_block_gui):
         self.samp_rate = samp_rate = 1e6
         self.bw = bw = 125000
         self.target_freq = target_freq = 910.3e6
-        self.symbols_per_sec = symbols_per_sec = float(bw) / (2**sf)
-        self.firdes_tap = firdes_tap = firdes.low_pass(1, samp_rate, bw, 10000, firdes.WIN_HAMMING, 6.67)
+        self.symbols_per_sec = symbols_per_sec = float(self.bw) / (2**self.sf)
+        self.firdes_tap = firdes_tap = firdes.low_pass(1, self.samp_rate, self.bw, 10000, firdes.WIN_HAMMING, 6.67)
         self.downlink = downlink = False
         self.decimation = decimation = 1
         self.cutoff = cutoff = 500e3
         self.capture_freq = capture_freq = 910e6
-        self.bitrate = bitrate = sf * (1 / (2**sf / float(self.bw)))
+        self.bitrate = bitrate = self.sf * (1 / (2**self.sf / float(self.bw)))
 
         ##################################################
         # Blocks
         ##################################################
-        # EDIT: Set up a sizer to arrange GUI elements vertically
         self.main_sizer = wx.BoxSizer(wx.VERTICAL)
         self.SetSizer(self.main_sizer)
 
         self.wxgui_fftsink2_1 = fftsink2.fft_sink_c(
         	self.GetWin(),
-        	baseband_freq=capture_freq,
+        	baseband_freq=self.capture_freq,
         	y_per_div=10,
         	y_divs=10,
         	ref_level=0,
         	ref_scale=2.0,
-        	sample_rate=samp_rate,
+        	sample_rate=self.samp_rate,
         	fft_size=1024,
         	fft_rate=15,
         	average=False,
@@ -111,16 +109,14 @@ class lora_receive_realtime(grc_wxgui.top_block_gui):
         	title='FFT Plot',
         	peak_hold=False,
         )
-        # EDIT: Add the FFT plot to the sizer
         self.main_sizer.Add(self.wxgui_fftsink2_1.win, 1, wx.EXPAND)
 
-        # EDIT: Add a text label to display the message count
         self.counter_label = wx.StaticText(self.GetWin(), label="LoRa Messages Received: 0", style=wx.ALIGN_CENTRE)
         self.main_sizer.Add(self.counter_label, 0, wx.ALL | wx.EXPAND, 5)
 
         self.rtlsdr_source_0 = osmosdr.source( args="numchan=" + str(1) + " " + '' )
-        self.rtlsdr_source_0.set_sample_rate(samp_rate)
-        self.rtlsdr_source_0.set_center_freq(capture_freq, 0)
+        self.rtlsdr_source_0.set_sample_rate(self.samp_rate)
+        self.rtlsdr_source_0.set_center_freq(self.capture_freq, 0)
         self.rtlsdr_source_0.set_freq_corr(0, 0)
         self.rtlsdr_source_0.set_dc_offset_mode(0, 0)
         self.rtlsdr_source_0.set_iq_balance_mode(0, 0)
@@ -132,75 +128,73 @@ class lora_receive_realtime(grc_wxgui.top_block_gui):
         self.rtlsdr_source_0.set_bandwidth(0, 0)
 
         self.recenter_0_0_6 = recenter(
-            cutoff=cutoff,
+            cutoff=self.cutoff,
             decim=1,
             htd_offset=700e3,
-            samp_rate0=samp_rate,
+            samp_rate0=self.samp_rate,
         )
         self.recenter_0_0_5 = recenter(
-            cutoff=cutoff,
+            cutoff=self.cutoff,
             decim=1,
             htd_offset=-700e3,
-            samp_rate0=samp_rate,
+            samp_rate0=self.samp_rate,
         )
         self.recenter_0_0_4 = recenter(
-            cutoff=cutoff,
+            cutoff=self.cutoff,
             decim=1,
             htd_offset=500e3,
-            samp_rate0=samp_rate,
+            samp_rate0=self.samp_rate,
         )
         self.recenter_0_0_3 = recenter(
-            cutoff=cutoff,
+            cutoff=self.cutoff,
             decim=1,
             htd_offset=-500e3,
-            samp_rate0=samp_rate,
+            samp_rate0=self.samp_rate,
         )
         self.recenter_0_0_2 = recenter(
-            cutoff=cutoff,
+            cutoff=self.cutoff,
             decim=1,
             htd_offset=300e3,
-            samp_rate0=samp_rate,
+            samp_rate0=self.samp_rate,
         )
         self.recenter_0_0_1 = recenter(
-            cutoff=cutoff,
+            cutoff=self.cutoff,
             decim=1,
             htd_offset=-300e3,
-            samp_rate0=samp_rate,
+            samp_rate0=self.samp_rate,
         )
         self.recenter_0_0_0 = recenter(
-            cutoff=cutoff,
+            cutoff=self.cutoff,
             decim=1,
             htd_offset=100e3,
-            samp_rate0=samp_rate,
+            samp_rate0=self.samp_rate,
         )
         self.recenter_0_0 = recenter(
-            cutoff=cutoff,
+            cutoff=self.cutoff,
             decim=1,
             htd_offset=-100e3,
-            samp_rate0=samp_rate,
+            samp_rate0=self.samp_rate,
         )
         self.recenter_0 = recenter(
-            cutoff=cutoff,
+            cutoff=self.cutoff,
             decim=1,
             htd_offset=0,
-            samp_rate0=samp_rate,
+            samp_rate0=self.samp_rate,
         )
         self.lora_message_socket_sink_0 = lora.message_socket_sink('127.0.0.1', 40868, 0)
-        self.lora_lora_receiver_0_0_3 = lora.lora_receiver(1e6, capture_freq, ([target_freq]), bw, 12, False, 4, True, False, downlink, decimation, False, False)
-        self.lora_lora_receiver_0_0_2 = lora.lora_receiver(1e6, capture_freq, ([target_freq]), bw, sf, False, 4, True, False, downlink, decimation, False, False)
-        self.lora_lora_receiver_0_0_1 = lora.lora_receiver(1e6, capture_freq, ([target_freq]), bw, 10, False, 4, True, False, downlink, decimation, False, False)
-        self.lora_lora_receiver_0_0_0 = lora.lora_receiver(1e6, capture_freq, ([target_freq]), bw, 9, False, 4, True, False, downlink, decimation, False, False)
-        self.lora_lora_receiver_0_0 = lora.lora_receiver(1e6, capture_freq, ([target_freq]), bw, 8, False, 4, True, False, downlink, decimation, False, False)
-        self.lora_lora_receiver_0 = lora.lora_receiver(1e6, capture_freq, ([target_freq]), bw, 7, False, 4, True, False, downlink, decimation, False, False)
+        self.lora_lora_receiver_0_0_3 = lora.lora_receiver(1e6, self.capture_freq, ([self.target_freq]), self.bw, 12, False, 4, True, False, self.downlink, self.decimation, False, False)
+        self.lora_lora_receiver_0_0_2 = lora.lora_receiver(1e6, self.capture_freq, ([self.target_freq]), self.bw, self.sf, False, 4, True, False, self.downlink, self.decimation, False, False)
+        self.lora_lora_receiver_0_0_1 = lora.lora_receiver(1e6, self.capture_freq, ([self.target_freq]), self.bw, 10, False, 4, True, False, self.downlink, self.decimation, False, False)
+        self.lora_lora_receiver_0_0_0 = lora.lora_receiver(1e6, self.capture_freq, ([self.target_freq]), self.bw, 9, False, 4, True, False, self.downlink, self.decimation, False, False)
+        self.lora_lora_receiver_0_0 = lora.lora_receiver(1e6, self.capture_freq, ([self.target_freq]), self.bw, 8, False, 4, True, False, self.downlink, self.decimation, False, False)
+        self.lora_lora_receiver_0 = lora.lora_receiver(1e6, self.capture_freq, ([self.target_freq]), self.bw, 7, False, 4, True, False, self.downlink, self.decimation, False, False)
         self.blocks_add_xx_0 = blocks.add_vcc(1)
 
-        # EDIT: Instantiate the new message counter block
         self.message_counter_0 = MessageCounter(self.counter_label)
 
         ##################################################
         # Connections
         ##################################################
-        # EDIT: Route all messages through the counter block
         self.msg_connect((self.lora_lora_receiver_0, 'frames'), (self.message_counter_0, 'in'))
         self.msg_connect((self.lora_lora_receiver_0_0, 'frames'), (self.message_counter_0, 'in'))
         self.msg_connect((self.lora_lora_receiver_0_0_0, 'frames'), (self.message_counter_0, 'in'))
@@ -208,7 +202,6 @@ class lora_receive_realtime(grc_wxgui.top_block_gui):
         self.msg_connect((self.lora_lora_receiver_0_0_2, 'frames'), (self.message_counter_0, 'in'))
         self.msg_connect((self.lora_lora_receiver_0_0_3, 'frames'), (self.message_counter_0, 'in'))
 
-        # EDIT: Connect the output of the counter to the original socket sink
         self.msg_connect((self.message_counter_0, 'out'), (self.lora_message_socket_sink_0, 'in'))
 
         self.connect((self.blocks_add_xx_0, 0), (self.lora_lora_receiver_0, 0))
@@ -341,22 +334,4 @@ def main(top_block_cls=lora_receive_realtime, options=None):
 
 
 if __name__ == '__main__':
-    main()```
-
-### Summary of Changes:
-
-1.  **MessageCounter Class:** I've added a new class called `MessageCounter`. It's a simple GNU Radio block that:
-    *   Receives a message.
-    *   Increments an internal counter.
-    *   Prints the new count to the console.
-    *   Updates a text label in the GUI with the new count.
-    *   Forwards the original message to its output, ensuring the rest of the flowgraph (like the socket sink) still functions as before.
-2.  **GUI Layout:**
-    *   I've added a `wx.BoxSizer` to properly arrange the GUI elements.
-    *   A new `wx.StaticText` label is created and added to the window, just below the FFT plot. This label will display the message count.
-3.  **Flowgraph Connections:**
-    *   An instance of the new `MessageCounter` block is created.
-    *   All the `lora.lora_receiver` blocks, which were previously connected directly to the `lora.message_socket_sink`, are now connected to the input of our new `MessageCounter` block.
-    *   The output of the `MessageCounter` is then connected to the `lora.message_socket_sink`.
-
-Now, when you run the script, you will see a counter below the FFT plot that increments every time a LoRa message is successfully received. The count will also be printed to the terminal.
+    main()
