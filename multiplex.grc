@@ -186,7 +186,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>500e3</value>
+      <value>250e3</value>
     </param>
   </block>
   <block>
@@ -299,6 +299,33 @@ for better performance, but worse accuracy.</value>
     <param>
       <key>value</key>
       <value>1e6</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(160, 96)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>samp_rate0</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>500e3</value>
     </param>
   </block>
   <block>
@@ -1074,7 +1101,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>samp_rate0</key>
-      <value>samp_rate</value>
+      <value>samp_rate0</value>
     </param>
   </block>
   <block>
@@ -1129,7 +1156,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>samp_rate0</key>
-      <value>samp_rate</value>
+      <value>samp_rate0</value>
     </param>
   </block>
   <block>
@@ -1184,7 +1211,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>samp_rate0</key>
-      <value>samp_rate</value>
+      <value>samp_rate0</value>
     </param>
   </block>
   <block>
@@ -1239,7 +1266,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>samp_rate0</key>
-      <value>samp_rate</value>
+      <value>samp_rate0</value>
     </param>
   </block>
   <block>
@@ -1294,7 +1321,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>samp_rate0</key>
-      <value>samp_rate</value>
+      <value>samp_rate0</value>
     </param>
   </block>
   <block>
@@ -1349,7 +1376,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>samp_rate0</key>
-      <value>samp_rate</value>
+      <value>samp_rate0</value>
     </param>
   </block>
   <block>
@@ -1404,7 +1431,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>samp_rate0</key>
-      <value>samp_rate</value>
+      <value>samp_rate0</value>
     </param>
   </block>
   <block>
@@ -1459,7 +1486,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>samp_rate0</key>
-      <value>samp_rate</value>
+      <value>samp_rate0</value>
     </param>
   </block>
   <block>
@@ -1514,7 +1541,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>samp_rate0</key>
-      <value>samp_rate</value>
+      <value>samp_rate0</value>
     </param>
   </block>
   <block>
@@ -1561,7 +1588,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>gain0</key>
-      <value>10</value>
+      <value>20</value>
     </param>
     <param>
       <key>ant1</key>
@@ -1784,7 +1811,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>baseband_freq</key>
-      <value>capture_freq</value>
+      <value>target_freq</value>
     </param>
     <param>
       <key>alias</key>
