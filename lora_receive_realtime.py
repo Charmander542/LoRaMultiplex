@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Lora Receive Realtime
-# Generated: Tue Jul 15 13:27:44 2025
+# Generated: Tue Jul 15 14:07:53 2025
 ##################################################
 
 if __name__ == '__main__':
@@ -49,10 +49,11 @@ class lora_receive_realtime(grc_wxgui.top_block_gui):
         self.bw = bw = 125000
         self.target_freq = target_freq = 910.3e6
         self.symbols_per_sec = symbols_per_sec = float(bw) / (2**sf)
+        self.samp_rate0 = samp_rate0 = 500e3
         self.firdes_tap = firdes_tap = firdes.low_pass(1, samp_rate, bw, 10000, firdes.WIN_HAMMING, 6.67)
         self.downlink = downlink = False
         self.decimation = decimation = 1
-        self.cutoff = cutoff = 500e3
+        self.cutoff = cutoff = 250e3
         self.capture_freq = capture_freq = 910e6
         self.bitrate = bitrate = sf * (1 / (2**sf / float(bw)))
 
@@ -61,7 +62,7 @@ class lora_receive_realtime(grc_wxgui.top_block_gui):
         ##################################################
         self.wxgui_fftsink2_1 = fftsink2.fft_sink_c(
         	self.GetWin(),
-        	baseband_freq=capture_freq,
+        	baseband_freq=target_freq,
         	y_per_div=10,
         	y_divs=10,
         	ref_level=0,
@@ -82,7 +83,7 @@ class lora_receive_realtime(grc_wxgui.top_block_gui):
         self.rtlsdr_source_0.set_dc_offset_mode(0, 0)
         self.rtlsdr_source_0.set_iq_balance_mode(0, 0)
         self.rtlsdr_source_0.set_gain_mode(False, 0)
-        self.rtlsdr_source_0.set_gain(10, 0)
+        self.rtlsdr_source_0.set_gain(20, 0)
         self.rtlsdr_source_0.set_if_gain(20, 0)
         self.rtlsdr_source_0.set_bb_gain(20, 0)
         self.rtlsdr_source_0.set_antenna('', 0)
@@ -92,55 +93,55 @@ class lora_receive_realtime(grc_wxgui.top_block_gui):
             cutoff=cutoff,
             decim=1,
             htd_offset=700e3,
-            samp_rate0=samp_rate,
+            samp_rate0=samp_rate0,
         )
         self.recenter_0_0_5 = recenter(
             cutoff=cutoff,
             decim=1,
             htd_offset=-700e3,
-            samp_rate0=samp_rate,
+            samp_rate0=samp_rate0,
         )
         self.recenter_0_0_4 = recenter(
             cutoff=cutoff,
             decim=1,
             htd_offset=500e3,
-            samp_rate0=samp_rate,
+            samp_rate0=samp_rate0,
         )
         self.recenter_0_0_3 = recenter(
             cutoff=cutoff,
             decim=1,
             htd_offset=-500e3,
-            samp_rate0=samp_rate,
+            samp_rate0=samp_rate0,
         )
         self.recenter_0_0_2 = recenter(
             cutoff=cutoff,
             decim=1,
             htd_offset=300e3,
-            samp_rate0=samp_rate,
+            samp_rate0=samp_rate0,
         )
         self.recenter_0_0_1 = recenter(
             cutoff=cutoff,
             decim=1,
             htd_offset=-300e3,
-            samp_rate0=samp_rate,
+            samp_rate0=samp_rate0,
         )
         self.recenter_0_0_0 = recenter(
             cutoff=cutoff,
             decim=1,
             htd_offset=100e3,
-            samp_rate0=samp_rate,
+            samp_rate0=samp_rate0,
         )
         self.recenter_0_0 = recenter(
             cutoff=cutoff,
             decim=1,
             htd_offset=-100e3,
-            samp_rate0=samp_rate,
+            samp_rate0=samp_rate0,
         )
         self.recenter_0 = recenter(
             cutoff=cutoff,
             decim=1,
             htd_offset=0,
-            samp_rate0=samp_rate,
+            samp_rate0=samp_rate0,
         )
         self.lora_message_socket_sink_0 = lora.message_socket_sink('127.0.0.1', 40868, 0)
         self.lora_lora_receiver_0_0_3 = lora.lora_receiver(1e6, capture_freq, ([target_freq]), bw, 12, False, 4, True, False, downlink, decimation, False, False)
@@ -202,15 +203,6 @@ class lora_receive_realtime(grc_wxgui.top_block_gui):
         self.samp_rate = samp_rate
         self.wxgui_fftsink2_1.set_sample_rate(self.samp_rate)
         self.rtlsdr_source_0.set_sample_rate(self.samp_rate)
-        self.recenter_0_0_6.set_samp_rate0(self.samp_rate)
-        self.recenter_0_0_5.set_samp_rate0(self.samp_rate)
-        self.recenter_0_0_4.set_samp_rate0(self.samp_rate)
-        self.recenter_0_0_3.set_samp_rate0(self.samp_rate)
-        self.recenter_0_0_2.set_samp_rate0(self.samp_rate)
-        self.recenter_0_0_1.set_samp_rate0(self.samp_rate)
-        self.recenter_0_0_0.set_samp_rate0(self.samp_rate)
-        self.recenter_0_0.set_samp_rate0(self.samp_rate)
-        self.recenter_0.set_samp_rate0(self.samp_rate)
         self.set_firdes_tap(firdes.low_pass(1, self.samp_rate, self.bw, 10000, firdes.WIN_HAMMING, 6.67))
 
     def get_bw(self):
@@ -227,12 +219,28 @@ class lora_receive_realtime(grc_wxgui.top_block_gui):
 
     def set_target_freq(self, target_freq):
         self.target_freq = target_freq
+        self.wxgui_fftsink2_1.set_baseband_freq(self.target_freq)
 
     def get_symbols_per_sec(self):
         return self.symbols_per_sec
 
     def set_symbols_per_sec(self, symbols_per_sec):
         self.symbols_per_sec = symbols_per_sec
+
+    def get_samp_rate0(self):
+        return self.samp_rate0
+
+    def set_samp_rate0(self, samp_rate0):
+        self.samp_rate0 = samp_rate0
+        self.recenter_0_0_6.set_samp_rate0(self.samp_rate0)
+        self.recenter_0_0_5.set_samp_rate0(self.samp_rate0)
+        self.recenter_0_0_4.set_samp_rate0(self.samp_rate0)
+        self.recenter_0_0_3.set_samp_rate0(self.samp_rate0)
+        self.recenter_0_0_2.set_samp_rate0(self.samp_rate0)
+        self.recenter_0_0_1.set_samp_rate0(self.samp_rate0)
+        self.recenter_0_0_0.set_samp_rate0(self.samp_rate0)
+        self.recenter_0_0.set_samp_rate0(self.samp_rate0)
+        self.recenter_0.set_samp_rate0(self.samp_rate0)
 
     def get_firdes_tap(self):
         return self.firdes_tap
@@ -272,7 +280,6 @@ class lora_receive_realtime(grc_wxgui.top_block_gui):
 
     def set_capture_freq(self, capture_freq):
         self.capture_freq = capture_freq
-        self.wxgui_fftsink2_1.set_baseband_freq(self.capture_freq)
         self.rtlsdr_source_0.set_center_freq(self.capture_freq, 0)
 
     def get_bitrate(self):
