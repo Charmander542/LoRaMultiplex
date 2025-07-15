@@ -92,7 +92,8 @@ class lora_receive_realtime(grc_wxgui.top_block_gui):
         # Blocks
         ##################################################
         self.main_sizer = wx.BoxSizer(wx.VERTICAL)
-        self.SetSizer(self.main_sizer)
+        # FIX: Call SetSizer on the GUI window (self.GetWin()), not the flowgraph (self).
+        self.GetWin().SetSizer(self.main_sizer)
 
         self.wxgui_fftsink2_1 = fftsink2.fft_sink_c(
         	self.GetWin(),
