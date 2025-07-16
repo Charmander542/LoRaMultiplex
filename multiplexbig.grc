@@ -10,7 +10,7 @@
     </param>
     <param>
       <key>window_size</key>
-      <value>2000, 2000</value>
+      <value>2000, 4000</value>
     </param>
     <param>
       <key>category</key>
@@ -159,7 +159,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>910e6</value>
+      <value>908.6e6</value>
     </param>
   </block>
   <block>
@@ -298,7 +298,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>value</key>
-      <value>1e6</value>
+      <value>30e6</value>
     </param>
   </block>
   <block>
@@ -325,7 +325,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>value</key>
-      <value>bw</value>
+      <value>500e3</value>
     </param>
   </block>
   <block>
@@ -406,7 +406,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>value</key>
-      <value>910.3e6</value>
+      <value>908.6e6</value>
     </param>
   </block>
   <block>
@@ -429,7 +429,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(616, 360)</value>
+      <value>(632, 368)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -453,7 +453,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>num_inputs</key>
-      <value>17</value>
+      <value>4</value>
     </param>
     <param>
       <key>vlen</key>
@@ -516,7 +516,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(800, 216)</value>
+      <value>(880, 312)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -607,7 +607,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(800, 344)</value>
+      <value>(880, 440)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -698,7 +698,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(800, 472)</value>
+      <value>(880, 568)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -789,7 +789,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(800, 600)</value>
+      <value>(880, 696)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -880,7 +880,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(800, 728)</value>
+      <value>(880, 824)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -971,7 +971,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(800, 856)</value>
+      <value>(880, 952)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1026,7 +1026,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1016, 240)</value>
+      <value>(1096, 336)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1050,7 +1050,7 @@ for better performance, but worse accuracy.</value>
     </param>
   </block>
   <block>
-    <key>recenter</key>
+    <key>meshtastic16</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -1069,7 +1069,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(264, 160)</value>
+      <value>(376, 208)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1077,7 +1077,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>id</key>
-      <value>recenter_0</value>
+      <value>meshtastic16_0</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -1088,16 +1088,12 @@ for better performance, but worse accuracy.</value>
       <value>0</value>
     </param>
     <param>
+      <key>center_freq</key>
+      <value>-4700e3</value>
+    </param>
+    <param>
       <key>cutoff</key>
       <value>cutoff</value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>htd_offset</key>
-      <value>0</value>
     </param>
     <param>
       <key>samp_rate0</key>
@@ -1105,7 +1101,7 @@ for better performance, but worse accuracy.</value>
     </param>
   </block>
   <block>
-    <key>recenter</key>
+    <key>meshtastic16</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -1124,7 +1120,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(264, 256)</value>
+      <value>(376, 288)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1132,7 +1128,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>id</key>
-      <value>recenter_0_0</value>
+      <value>meshtastic16_0_0</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -1143,574 +1139,20 @@ for better performance, but worse accuracy.</value>
       <value>0</value>
     </param>
     <param>
-      <key>cutoff</key>
-      <value>cutoff</value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>htd_offset</key>
-      <value>-100e3</value>
-    </param>
-    <param>
-      <key>samp_rate0</key>
-      <value>samp_rate0</value>
-    </param>
-  </block>
-  <block>
-    <key>recenter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(264, 352)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>recenter_0_0_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>cutoff</key>
-      <value>cutoff</value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>htd_offset</key>
-      <value>100e3</value>
-    </param>
-    <param>
-      <key>samp_rate0</key>
-      <value>samp_rate0</value>
-    </param>
-  </block>
-  <block>
-    <key>recenter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(264, 1216)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>recenter_0_0_0_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>cutoff</key>
-      <value>cutoff</value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>htd_offset</key>
-      <value>1100e3</value>
-    </param>
-    <param>
-      <key>samp_rate0</key>
-      <value>samp_rate0</value>
-    </param>
-  </block>
-  <block>
-    <key>recenter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(264, 448)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>recenter_0_0_1</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>cutoff</key>
-      <value>cutoff</value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>htd_offset</key>
-      <value>-300e3</value>
-    </param>
-    <param>
-      <key>samp_rate0</key>
-      <value>samp_rate0</value>
-    </param>
-  </block>
-  <block>
-    <key>recenter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(264, 1312)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>recenter_0_0_1_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>cutoff</key>
-      <value>cutoff</value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>htd_offset</key>
-      <value>-1100e3</value>
-    </param>
-    <param>
-      <key>samp_rate0</key>
-      <value>samp_rate0</value>
-    </param>
-  </block>
-  <block>
-    <key>recenter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(264, 544)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>recenter_0_0_2</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>cutoff</key>
-      <value>cutoff</value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>htd_offset</key>
-      <value>300e3</value>
-    </param>
-    <param>
-      <key>samp_rate0</key>
-      <value>samp_rate0</value>
-    </param>
-  </block>
-  <block>
-    <key>recenter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(264, 1408)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>recenter_0_0_2_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>cutoff</key>
-      <value>cutoff</value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>htd_offset</key>
-      <value>1300e3</value>
-    </param>
-    <param>
-      <key>samp_rate0</key>
-      <value>samp_rate0</value>
-    </param>
-  </block>
-  <block>
-    <key>recenter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(264, 640)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>recenter_0_0_3</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>cutoff</key>
-      <value>cutoff</value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>htd_offset</key>
-      <value>-500e3</value>
-    </param>
-    <param>
-      <key>samp_rate0</key>
-      <value>samp_rate0</value>
-    </param>
-  </block>
-  <block>
-    <key>recenter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(264, 1504)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>recenter_0_0_3_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>cutoff</key>
-      <value>cutoff</value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>htd_offset</key>
-      <value>-1300e3</value>
-    </param>
-    <param>
-      <key>samp_rate0</key>
-      <value>samp_rate0</value>
-    </param>
-  </block>
-  <block>
-    <key>recenter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(264, 736)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>recenter_0_0_4</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>cutoff</key>
-      <value>cutoff</value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>htd_offset</key>
-      <value>500e3</value>
-    </param>
-    <param>
-      <key>samp_rate0</key>
-      <value>samp_rate0</value>
-    </param>
-  </block>
-  <block>
-    <key>recenter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(264, 1696)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>recenter_0_0_4_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>cutoff</key>
-      <value>cutoff</value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>htd_offset</key>
+      <key>center_freq</key>
       <value>-1500e3</value>
     </param>
     <param>
+      <key>cutoff</key>
+      <value>cutoff</value>
+    </param>
+    <param>
       <key>samp_rate0</key>
       <value>samp_rate0</value>
     </param>
   </block>
   <block>
-    <key>recenter</key>
+    <key>meshtastic16</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -1729,7 +1171,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(264, 832)</value>
+      <value>(376, 368)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1737,7 +1179,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>id</key>
-      <value>recenter_0_0_5</value>
+      <value>meshtastic16_0_1</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -1748,16 +1190,12 @@ for better performance, but worse accuracy.</value>
       <value>0</value>
     </param>
     <param>
+      <key>center_freq</key>
+      <value>1700e3</value>
+    </param>
+    <param>
       <key>cutoff</key>
       <value>cutoff</value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>htd_offset</key>
-      <value>-700e3</value>
     </param>
     <param>
       <key>samp_rate0</key>
@@ -1765,7 +1203,7 @@ for better performance, but worse accuracy.</value>
     </param>
   </block>
   <block>
-    <key>recenter</key>
+    <key>meshtastic16</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -1784,7 +1222,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(264, 928)</value>
+      <value>(376, 448)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1792,7 +1230,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>id</key>
-      <value>recenter_0_0_6</value>
+      <value>meshtastic16_0_1_0</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -1803,181 +1241,12 @@ for better performance, but worse accuracy.</value>
       <value>0</value>
     </param>
     <param>
-      <key>cutoff</key>
-      <value>cutoff</value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>htd_offset</key>
-      <value>700e3</value>
-    </param>
-    <param>
-      <key>samp_rate0</key>
-      <value>samp_rate0</value>
-    </param>
-  </block>
-  <block>
-    <key>recenter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(264, 1600)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>recenter_0_0_6_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
+      <key>center_freq</key>
+      <value>4900e3</value>
     </param>
     <param>
       <key>cutoff</key>
       <value>cutoff</value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>htd_offset</key>
-      <value>1500e3</value>
-    </param>
-    <param>
-      <key>samp_rate0</key>
-      <value>samp_rate0</value>
-    </param>
-  </block>
-  <block>
-    <key>recenter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(264, 1120)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>recenter_0_0_7</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>cutoff</key>
-      <value>cutoff</value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>htd_offset</key>
-      <value>900e3</value>
-    </param>
-    <param>
-      <key>samp_rate0</key>
-      <value>samp_rate0</value>
-    </param>
-  </block>
-  <block>
-    <key>recenter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(264, 1024)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>recenter_0_1</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>cutoff</key>
-      <value>cutoff</value>
-    </param>
-    <param>
-      <key>decim</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>htd_offset</key>
-      <value>-900e3</value>
     </param>
     <param>
       <key>samp_rate0</key>
@@ -3168,7 +2437,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(24, 176)</value>
+      <value>(80, 320)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3363,7 +2632,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(496, 128)</value>
+      <value>(880, 104)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3505,206 +2774,50 @@ for better performance, but worse accuracy.</value>
     <sink_key>in</sink_key>
   </connection>
   <connection>
-    <source_block_id>recenter_0</source_block_id>
+    <source_block_id>meshtastic16_0</source_block_id>
     <sink_block_id>blocks_add_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>recenter_0_0</source_block_id>
+    <source_block_id>meshtastic16_0_0</source_block_id>
     <sink_block_id>blocks_add_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>1</sink_key>
   </connection>
   <connection>
-    <source_block_id>recenter_0_0_0</source_block_id>
+    <source_block_id>meshtastic16_0_1</source_block_id>
     <sink_block_id>blocks_add_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>2</sink_key>
   </connection>
   <connection>
-    <source_block_id>recenter_0_0_0_0</source_block_id>
-    <sink_block_id>blocks_add_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>11</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>recenter_0_0_1</source_block_id>
+    <source_block_id>meshtastic16_0_1_0</source_block_id>
     <sink_block_id>blocks_add_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>3</sink_key>
   </connection>
   <connection>
-    <source_block_id>recenter_0_0_1_0</source_block_id>
-    <sink_block_id>blocks_add_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>12</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>recenter_0_0_2</source_block_id>
-    <sink_block_id>blocks_add_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>4</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>recenter_0_0_2_0</source_block_id>
-    <sink_block_id>blocks_add_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>13</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>recenter_0_0_3</source_block_id>
-    <sink_block_id>blocks_add_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>5</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>recenter_0_0_3_0</source_block_id>
-    <sink_block_id>blocks_add_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>14</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>recenter_0_0_4</source_block_id>
-    <sink_block_id>blocks_add_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>6</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>recenter_0_0_4_0</source_block_id>
-    <sink_block_id>blocks_add_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>16</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>recenter_0_0_5</source_block_id>
-    <sink_block_id>blocks_add_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>7</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>recenter_0_0_6</source_block_id>
-    <sink_block_id>blocks_add_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>8</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>recenter_0_0_6_0</source_block_id>
-    <sink_block_id>blocks_add_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>15</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>recenter_0_0_7</source_block_id>
-    <sink_block_id>blocks_add_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>10</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>recenter_0_1</source_block_id>
-    <sink_block_id>blocks_add_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>9</sink_key>
-  </connection>
-  <connection>
     <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>recenter_0</sink_block_id>
+    <sink_block_id>meshtastic16_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>recenter_0_0</sink_block_id>
+    <sink_block_id>meshtastic16_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>recenter_0_0_0</sink_block_id>
+    <sink_block_id>meshtastic16_0_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>recenter_0_0_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>recenter_0_0_1</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>recenter_0_0_1_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>recenter_0_0_2</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>recenter_0_0_2_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>recenter_0_0_3</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>recenter_0_0_3_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>recenter_0_0_4</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>recenter_0_0_4_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>recenter_0_0_5</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>recenter_0_0_6</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>recenter_0_0_6_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>recenter_0_0_7</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>recenter_0_1</sink_block_id>
+    <sink_block_id>meshtastic16_0_1_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

@@ -132,7 +132,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>10e3</value>
+      <value>30e3</value>
     </param>
   </block>
   <block>
@@ -450,7 +450,7 @@
     </param>
     <param>
       <key>win</key>
-      <value>firdes.WIN_HAMMING</value>
+      <value>firdes.WIN_KAISER</value>
     </param>
   </block>
   <block>
