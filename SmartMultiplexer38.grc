@@ -10,7 +10,7 @@
     </param>
     <param>
       <key>window_size</key>
-      <value></value>
+      <value>3000,2000</value>
     </param>
     <param>
       <key>category</key>
@@ -106,6 +106,87 @@
     <param>
       <key>value</key>
       <value>60</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1800, 40)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>bitrate</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>sf * (1 / (2**sf / float(bw)))</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1712, 40)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>bw</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>125000</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1536, 40)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>capture_freq</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>910.3e6</value>
     </param>
   </block>
   <block>
@@ -220,6 +301,37 @@
     <key>variable</key>
     <param>
       <key>comment</key>
+      <value>The decimation determines the oversampling rate.
+A sample rate of 1e6 and decimation of 1 equals
+8 times oversampling, a decimation of 2 is 4 times
+oversampling, and so on. Set higher decimation
+for better performance, but worse accuracy.</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1896, 104)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>decimation</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
       <value></value>
     </param>
     <param>
@@ -241,6 +353,60 @@
     <param>
       <key>value</key>
       <value>int(150e3)</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1640, 104)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>downlink</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>False</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(2024, 40)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>firdes_tap</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>firdes.low_pass(1, samp_rate, bw, 10000, firdes.WIN_HAMMING, 6.67)</value>
     </param>
   </block>
   <block>
@@ -282,6 +448,60 @@
     </param>
     <param>
       <key>_coordinate</key>
+      <value>(1640, 40)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>sf</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>11</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1896, 40)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>symbols_per_sec</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>float(bw) / (2**sf)</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
       <value>(152, 104)</value>
     </param>
     <param>
@@ -295,6 +515,84 @@
     <param>
       <key>value</key>
       <value>firdes.low_pass(1, samp_rate, ch_bw, ch_tb, firdes.WIN_BLACKMAN_hARRIS)</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1536, 104)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>target_freq</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>910.3e6</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_add_xx</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1080, 192)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_add_xx_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>num_inputs</key>
+      <value>channels</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -1278,53 +1576,6 @@
     </param>
   </block>
   <block>
-    <key>blocks_null_sink</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>bus_conns</key>
-      <value>[[0,],]</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1128, 200)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_null_sink_0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>complex</value>
-    </param>
-    <param>
-      <key>num_inputs</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
     <key>blocks_streams_to_vector</key>
     <param>
       <key>alias</key>
@@ -1387,7 +1638,7 @@
     </param>
     <param>
       <key>_source_code</key>
-      <value><![CDATA[
+      <value>
 import numpy as np
 from gnuradio import gr
 import pmt
@@ -1440,19 +1691,19 @@ class blk(gr.sync_block):
         # Number of items to process, determined by the scheduler
         num_to_process = len(output_items[0])
 
-        if len(power_vector_buffer) > 0:
+        if len(power_vector_buffer) &gt; 0:
             # Use the first available power vector for this work call
             power_vector = power_vector_buffer[0]
             for i in range(self.num_channels):
                 # If power is above threshold, activate channel and reset hold counter
-                if power_vector[i] > self.threshold:
+                if power_vector[i] &gt; self.threshold:
                     self.active_channels[i] = True
                     self.hold_counters[i] = self.hold_samples
                 # If channel is in hold state, keep it active and decrement counter
-                elif self.hold_counters[i] > 0:
+                elif self.hold_counters[i] &gt; 0:
                     self.active_channels[i] = True
                     self.hold_counters[i] -= num_to_process
-                    if self.hold_counters[i] < 0:
+                    if self.hold_counters[i] &lt; 0:
                         self.hold_counters[i] = 0
                 # Otherwise, the channel is inactive
                 else:
@@ -1460,10 +1711,10 @@ class blk(gr.sync_block):
         else:
             # If there's no new power vector, maintain the state based on hold counters
             for i in range(self.num_channels):
-                if self.hold_counters[i] > 0:
+                if self.hold_counters[i] &gt; 0:
                     self.active_channels[i] = True
                     self.hold_counters[i] -= num_to_process
-                    if self.hold_counters[i] < 0:
+                    if self.hold_counters[i] &lt; 0:
                         self.hold_counters[i] = 0
                 else:
                     self.active_channels[i] = False
@@ -1491,7 +1742,7 @@ class blk(gr.sync_block):
 
         # Return the number of items produced on each output stream
         return num_to_process
-]]>
+
       </value>
     </param>
     <param>
@@ -1503,24 +1754,91 @@ class blk(gr.sync_block):
       <value>True</value>
     </param>
     <param>
-        <key>hold_time_s</key>
-        <value>2.0</value>
+      <key>_coordinate</key>
+      <value>(888, 192)</value>
     </param>
     <param>
-        <key>num_channels</key>
-        <value>10</value>
+      <key>_rotation</key>
+      <value>0</value>
     </param>
     <param>
-        <key>samp_rate</key>
-        <value>1e6</value>
+      <key>hold_time_s</key>
+      <value>0.750</value>
     </param>
     <param>
-        <key>threshold_db</key>
-        <value>-40.0</value>
+      <key>id</key>
+      <value>epy_block_0</value>
+    </param>
+    <param>
+      <key>num_channels</key>
+      <value>10</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>ch_rate</value>
+    </param>
+    <param>
+      <key>threshold_db</key>
+      <value>-60.0</value>
+    </param>
+  </block>
+  <block>
+    <key>lora_lora_receiver</key>
+    <param>
+      <key>bandwidth</key>
+      <value>bw</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>crc</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>center_freq</key>
+      <value>capture_freq</value>
+    </param>
+    <param>
+      <key>channel_list</key>
+      <value>[target_freq]</value>
+    </param>
+    <param>
+      <key>cr</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>conj</key>
+      <value>downlink</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>decimation</key>
+      <value>decimation</value>
+    </param>
+    <param>
+      <key>disable_channelization</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>disable_drift_correction</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(856, 304)</value>
+      <value>(1248, 32)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1528,7 +1846,486 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>id</key>
-      <value>epy_block_0</value>
+      <value>lora_lora_receiver_0</value>
+    </param>
+    <param>
+      <key>implicit</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>reduced_rate</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>1e6</value>
+    </param>
+    <param>
+      <key>sf</key>
+      <value>7</value>
+    </param>
+  </block>
+  <block>
+    <key>lora_lora_receiver</key>
+    <param>
+      <key>bandwidth</key>
+      <value>bw</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>crc</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>center_freq</key>
+      <value>capture_freq</value>
+    </param>
+    <param>
+      <key>channel_list</key>
+      <value>[target_freq]</value>
+    </param>
+    <param>
+      <key>cr</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>conj</key>
+      <value>downlink</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>decimation</key>
+      <value>decimation</value>
+    </param>
+    <param>
+      <key>disable_channelization</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>disable_drift_correction</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1248, 160)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>lora_lora_receiver_0_0</value>
+    </param>
+    <param>
+      <key>implicit</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>reduced_rate</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>1e6</value>
+    </param>
+    <param>
+      <key>sf</key>
+      <value>8</value>
+    </param>
+  </block>
+  <block>
+    <key>lora_lora_receiver</key>
+    <param>
+      <key>bandwidth</key>
+      <value>bw</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>crc</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>center_freq</key>
+      <value>capture_freq</value>
+    </param>
+    <param>
+      <key>channel_list</key>
+      <value>[target_freq]</value>
+    </param>
+    <param>
+      <key>cr</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>conj</key>
+      <value>downlink</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>decimation</key>
+      <value>decimation</value>
+    </param>
+    <param>
+      <key>disable_channelization</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>disable_drift_correction</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1248, 288)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>lora_lora_receiver_0_0_0</value>
+    </param>
+    <param>
+      <key>implicit</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>reduced_rate</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>1e6</value>
+    </param>
+    <param>
+      <key>sf</key>
+      <value>9</value>
+    </param>
+  </block>
+  <block>
+    <key>lora_lora_receiver</key>
+    <param>
+      <key>bandwidth</key>
+      <value>bw</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>crc</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>center_freq</key>
+      <value>capture_freq</value>
+    </param>
+    <param>
+      <key>channel_list</key>
+      <value>[target_freq]</value>
+    </param>
+    <param>
+      <key>cr</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>conj</key>
+      <value>downlink</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>decimation</key>
+      <value>decimation</value>
+    </param>
+    <param>
+      <key>disable_channelization</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>disable_drift_correction</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1248, 416)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>lora_lora_receiver_0_0_1</value>
+    </param>
+    <param>
+      <key>implicit</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>reduced_rate</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>1e6</value>
+    </param>
+    <param>
+      <key>sf</key>
+      <value>10</value>
+    </param>
+  </block>
+  <block>
+    <key>lora_lora_receiver</key>
+    <param>
+      <key>bandwidth</key>
+      <value>bw</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>crc</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>center_freq</key>
+      <value>capture_freq</value>
+    </param>
+    <param>
+      <key>channel_list</key>
+      <value>[target_freq]</value>
+    </param>
+    <param>
+      <key>cr</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>conj</key>
+      <value>downlink</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>decimation</key>
+      <value>decimation</value>
+    </param>
+    <param>
+      <key>disable_channelization</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>disable_drift_correction</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1248, 544)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>lora_lora_receiver_0_0_2</value>
+    </param>
+    <param>
+      <key>implicit</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>reduced_rate</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>1e6</value>
+    </param>
+    <param>
+      <key>sf</key>
+      <value>sf</value>
+    </param>
+  </block>
+  <block>
+    <key>lora_lora_receiver</key>
+    <param>
+      <key>bandwidth</key>
+      <value>bw</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>crc</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>center_freq</key>
+      <value>capture_freq</value>
+    </param>
+    <param>
+      <key>channel_list</key>
+      <value>[target_freq]</value>
+    </param>
+    <param>
+      <key>cr</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>conj</key>
+      <value>downlink</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>decimation</key>
+      <value>decimation</value>
+    </param>
+    <param>
+      <key>disable_channelization</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>disable_drift_correction</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1248, 672)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>lora_lora_receiver_0_0_3</value>
+    </param>
+    <param>
+      <key>implicit</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>reduced_rate</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>1e6</value>
+    </param>
+    <param>
+      <key>sf</key>
+      <value>12</value>
     </param>
   </block>
   <block>
@@ -1599,6 +2396,65 @@ class blk(gr.sync_block):
     </param>
   </block>
   <block>
+    <key>rational_resampler_xxx</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>decim</key>
+      <value>8</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>fbw</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1000, 32)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>rational_resampler_xxx_0</value>
+    </param>
+    <param>
+      <key>interp</key>
+      <value>5</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>taps</key>
+      <value>firdes.low_pass(1, 400000, 62500, 20000, firdes.WIN_HAMMING)</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>ccc</value>
+    </param>
+  </block>
+  <block>
     <key>uhd_usrp_source</key>
     <param>
       <key>alias</key>
@@ -1614,7 +2470,7 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>center_freq0</key>
-      <value>0</value>
+      <value>capture_freq</value>
     </param>
     <param>
       <key>dc_offs_enb0</key>
@@ -2770,7 +3626,7 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>dev_addr</key>
-      <value>""</value>
+      <value>"serial: 3134BCA"</value>
     </param>
     <param>
       <key>dev_args</key>
@@ -2938,6 +3794,12 @@ class blk(gr.sync_block):
     </param>
   </block>
   <connection>
+    <source_block_id>blocks_add_xx_0</source_block_id>
+    <sink_block_id>rational_resampler_xxx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>blocks_complex_to_mag_squared_0</source_block_id>
     <sink_block_id>blocks_streams_to_vector_0</sink_block_id>
     <source_key>0</source_key>
@@ -2995,6 +3857,132 @@ class blk(gr.sync_block):
     <source_block_id>blocks_complex_to_mag_squared_0_8</source_block_id>
     <sink_block_id>blocks_streams_to_vector_0</sink_block_id>
     <source_key>0</source_key>
+    <sink_key>9</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_delay_0</source_block_id>
+    <sink_block_id>epy_block_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_delay_0_0</source_block_id>
+    <sink_block_id>epy_block_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_delay_0_0_0</source_block_id>
+    <sink_block_id>epy_block_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>6</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_delay_0_1</source_block_id>
+    <sink_block_id>epy_block_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>2</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_delay_0_1_0</source_block_id>
+    <sink_block_id>epy_block_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>7</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_delay_0_2</source_block_id>
+    <sink_block_id>epy_block_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>3</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_delay_0_2_0</source_block_id>
+    <sink_block_id>epy_block_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>8</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_delay_0_3</source_block_id>
+    <sink_block_id>epy_block_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>4</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_delay_0_3_0</source_block_id>
+    <sink_block_id>epy_block_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>9</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_delay_0_4</source_block_id>
+    <sink_block_id>epy_block_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>5</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_streams_to_vector_0</source_block_id>
+    <sink_block_id>epy_block_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>10</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>epy_block_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>epy_block_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>1</source_key>
+    <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>epy_block_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>2</source_key>
+    <sink_key>2</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>epy_block_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>3</source_key>
+    <sink_key>3</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>epy_block_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>4</source_key>
+    <sink_key>4</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>epy_block_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>5</source_key>
+    <sink_key>5</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>epy_block_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>6</source_key>
+    <sink_key>6</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>epy_block_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>7</source_key>
+    <sink_key>7</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>epy_block_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>8</source_key>
+    <sink_key>8</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>epy_block_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>9</source_key>
     <sink_key>9</sink_key>
   </connection>
   <connection>
@@ -3115,6 +4103,42 @@ class blk(gr.sync_block):
     <source_block_id>pfb_channelizer_ccf_0</source_block_id>
     <sink_block_id>blocks_delay_0_3_0</sink_block_id>
     <source_key>9</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>rational_resampler_xxx_0</source_block_id>
+    <sink_block_id>lora_lora_receiver_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>rational_resampler_xxx_0</source_block_id>
+    <sink_block_id>lora_lora_receiver_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>rational_resampler_xxx_0</source_block_id>
+    <sink_block_id>lora_lora_receiver_0_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>rational_resampler_xxx_0</source_block_id>
+    <sink_block_id>lora_lora_receiver_0_0_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>rational_resampler_xxx_0</source_block_id>
+    <sink_block_id>lora_lora_receiver_0_0_2</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>rational_resampler_xxx_0</source_block_id>
+    <sink_block_id>lora_lora_receiver_0_0_3</sink_block_id>
+    <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
