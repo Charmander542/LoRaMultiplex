@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>lora_receive_realtime</value>
+      <value>single</value>
     </param>
     <param>
       <key>max_nouts</key>
