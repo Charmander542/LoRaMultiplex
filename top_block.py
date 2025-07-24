@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Top Block
-# Generated: Tue Jul 22 16:33:58 2025
+# Generated: Thu Jul 24 16:41:37 2025
 ##################################################
 
 if __name__ == '__main__':
@@ -16,17 +16,20 @@ if __name__ == '__main__':
         except:
             print "Warning: failed to XInitThreads()"
 
+from gnuradio import analog
 from gnuradio import blocks
 from gnuradio import eng_notation
 from gnuradio import filter
 from gnuradio import gr
 from gnuradio import uhd
+from gnuradio import wxgui
 from gnuradio.eng_option import eng_option
+from gnuradio.fft import window
 from gnuradio.filter import firdes
 from gnuradio.filter import pfb
+from gnuradio.wxgui import fftsink2
 from grc_gnuradio import wxgui as grc_wxgui
 from optparse import OptionParser
-import epy_block_0
 import lora
 import time
 import wx
@@ -40,15 +43,16 @@ class top_block(grc_wxgui.top_block_gui):
         ##################################################
         # Variables
         ##################################################
-        self.channels = channels = 10
+        self.channels = channels = 40
         self.ch_rate = ch_rate = 400e3
         self.sf = sf = 11
         self.samp_rate = samp_rate = ch_rate*channels
         self.ch_tb = ch_tb = 20e3
         self.ch_bw = ch_bw = ch_rate/2
         self.bw = bw = 125000
+        self.thresh = thresh = -90
         self.target_freq = target_freq = 910.3e6
-        self.taps = taps = firdes.low_pass(1, samp_rate, ch_bw, ch_tb, firdes.WIN_BLACKMAN_hARRIS)
+        self.taps = taps = firdes.low_pass(1, samp_rate, ch_bw, ch_tb, firdes.WIN_HAMMING)
         self.symbols_per_sec = symbols_per_sec = float(bw) / (2**sf)
         self.firdes_tap = firdes_tap = firdes.low_pass(1, samp_rate, bw, 10000, firdes.WIN_HAMMING, 6.67)
         self.downlink = downlink = False
@@ -61,8 +65,24 @@ class top_block(grc_wxgui.top_block_gui):
         ##################################################
         # Blocks
         ##################################################
+        self.wxgui_fftsink2_1 = fftsink2.fft_sink_c(
+        	self.GetWin(),
+        	baseband_freq=target_freq,
+        	y_per_div=10,
+        	y_divs=10,
+        	ref_level=0,
+        	ref_scale=2.0,
+        	sample_rate=samp_rate,
+        	fft_size=1024,
+        	fft_rate=15,
+        	average=False,
+        	avg_alpha=None,
+        	title='FFT Plot',
+        	peak_hold=False,
+        )
+        self.Add(self.wxgui_fftsink2_1.win)
         self.uhd_usrp_source_0 = uhd.usrp_source(
-        	",".join(("serial: 3134BCA", "")),
+        	",".join(("serial=3134BCA", "")),
         	uhd.stream_args(
         		cpu_format="fc32",
         		channels=range(1),
@@ -70,11 +90,11 @@ class top_block(grc_wxgui.top_block_gui):
         )
         self.uhd_usrp_source_0.set_samp_rate(samp_rate)
         self.uhd_usrp_source_0.set_center_freq(capture_freq, 0)
-        self.uhd_usrp_source_0.set_gain(0, 0)
+        self.uhd_usrp_source_0.set_gain(20, 0)
         self.rational_resampler_xxx_0 = filter.rational_resampler_ccc(
                 interpolation=5,
                 decimation=8,
-                taps=(firdes.low_pass(1, 400000, 62500, 20000, firdes.WIN_HAMMING)),
+                taps=(firdes.low_pass(1, 400000, 62500, 20000, window.WIN_HAMMING)),
                 fractional_bw=None,
         )
         self.pfb_channelizer_ccf_0 = pfb.channelizer_ccf(
@@ -85,97 +105,135 @@ class top_block(grc_wxgui.top_block_gui):
         self.pfb_channelizer_ccf_0.set_channel_map(([]))
         self.pfb_channelizer_ccf_0.declare_sample_delay(0)
 
-        self.lora_lora_receiver_0_0_3 = lora.lora_receiver(1e6, capture_freq, ([target_freq]), bw, 12, False, 4, True, False, downlink, decimation, False, False)
-        self.lora_lora_receiver_0_0_2 = lora.lora_receiver(1e6, capture_freq, ([target_freq]), bw, sf, False, 4, True, False, downlink, decimation, False, False)
-        self.lora_lora_receiver_0_0_1 = lora.lora_receiver(1e6, capture_freq, ([target_freq]), bw, 10, False, 4, True, False, downlink, decimation, False, False)
-        self.lora_lora_receiver_0_0_0 = lora.lora_receiver(1e6, capture_freq, ([target_freq]), bw, 9, False, 4, True, False, downlink, decimation, False, False)
-        self.lora_lora_receiver_0_0 = lora.lora_receiver(1e6, capture_freq, ([target_freq]), bw, 8, False, 4, True, False, downlink, decimation, False, False)
-        self.lora_lora_receiver_0 = lora.lora_receiver(1e6, capture_freq, ([target_freq]), bw, 7, False, 4, True, False, downlink, decimation, False, False)
-        self.epy_block_0 = epy_block_0.blk(num_channels=10, threshold_db=-60.0, hold_time_s=0.750, samp_rate=ch_rate)
-        self.blocks_streams_to_vector_0 = blocks.streams_to_vector(gr.sizeof_float*1, channels)
-        self.blocks_delay_0_4 = blocks.delay(gr.sizeof_gr_complex*1, delay)
-        self.blocks_delay_0_3_0 = blocks.delay(gr.sizeof_gr_complex*1, delay)
-        self.blocks_delay_0_3 = blocks.delay(gr.sizeof_gr_complex*1, delay)
-        self.blocks_delay_0_2_0 = blocks.delay(gr.sizeof_gr_complex*1, delay)
-        self.blocks_delay_0_2 = blocks.delay(gr.sizeof_gr_complex*1, delay)
-        self.blocks_delay_0_1_0 = blocks.delay(gr.sizeof_gr_complex*1, delay)
-        self.blocks_delay_0_1 = blocks.delay(gr.sizeof_gr_complex*1, delay)
-        self.blocks_delay_0_0_0 = blocks.delay(gr.sizeof_gr_complex*1, delay)
-        self.blocks_delay_0_0 = blocks.delay(gr.sizeof_gr_complex*1, delay)
-        self.blocks_delay_0 = blocks.delay(gr.sizeof_gr_complex*1, delay)
-        self.blocks_complex_to_mag_squared_0_8 = blocks.complex_to_mag_squared(1)
-        self.blocks_complex_to_mag_squared_0_7 = blocks.complex_to_mag_squared(1)
-        self.blocks_complex_to_mag_squared_0_6 = blocks.complex_to_mag_squared(1)
-        self.blocks_complex_to_mag_squared_0_5 = blocks.complex_to_mag_squared(1)
-        self.blocks_complex_to_mag_squared_0_4 = blocks.complex_to_mag_squared(1)
-        self.blocks_complex_to_mag_squared_0_3 = blocks.complex_to_mag_squared(1)
-        self.blocks_complex_to_mag_squared_0_2 = blocks.complex_to_mag_squared(1)
-        self.blocks_complex_to_mag_squared_0_1 = blocks.complex_to_mag_squared(1)
-        self.blocks_complex_to_mag_squared_0_0 = blocks.complex_to_mag_squared(1)
-        self.blocks_complex_to_mag_squared_0 = blocks.complex_to_mag_squared(1)
+        self.lora_lora_receiver_0 = lora.lora_receiver(250e3, capture_freq, ([target_freq]), bw, 7, False, 4, True, False, downlink, decimation, False, False)
         self.blocks_add_xx_0 = blocks.add_vcc(1)
+        self.analog_pwr_squelch_xx_0_2 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_1_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_1 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_4 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_3_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_3 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_3 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_2_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_2 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_1_4 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_1_3_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_1_3 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_1_2_1 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_1_2_0_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_1_2_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_1_2 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_1_1_1 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_1_1_0_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_1_1_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_1_1 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_1_0_1 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_1_0_0_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_1_0_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_1_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_1 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_0_1 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_0_0_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_0_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_2 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_1_1 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_1_0_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_1_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_1 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_0_1 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_0_0_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_0_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
+        self.analog_pwr_squelch_xx_0 = analog.pwr_squelch_cc(thresh, 1e-4, 0, True)
 
         ##################################################
         # Connections
         ##################################################
+        self.connect((self.analog_pwr_squelch_xx_0, 0), (self.blocks_add_xx_0, 0))
+        self.connect((self.analog_pwr_squelch_xx_0_0, 0), (self.blocks_add_xx_0, 1))
+        self.connect((self.analog_pwr_squelch_xx_0_0_0, 0), (self.blocks_add_xx_0, 2))
+        self.connect((self.analog_pwr_squelch_xx_0_0_0_0, 0), (self.blocks_add_xx_0, 12))
+        self.connect((self.analog_pwr_squelch_xx_0_0_0_0_0, 0), (self.blocks_add_xx_0, 32))
+        self.connect((self.analog_pwr_squelch_xx_0_0_0_1, 0), (self.blocks_add_xx_0, 22))
+        self.connect((self.analog_pwr_squelch_xx_0_0_1, 0), (self.blocks_add_xx_0, 3))
+        self.connect((self.analog_pwr_squelch_xx_0_0_1_0, 0), (self.blocks_add_xx_0, 13))
+        self.connect((self.analog_pwr_squelch_xx_0_0_1_0_0, 0), (self.blocks_add_xx_0, 33))
+        self.connect((self.analog_pwr_squelch_xx_0_0_1_1, 0), (self.blocks_add_xx_0, 23))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2, 0), (self.blocks_add_xx_0, 4))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_0, 0), (self.blocks_add_xx_0, 5))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_0_0, 0), (self.blocks_add_xx_0, 15))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_0_0_0, 0), (self.blocks_add_xx_0, 35))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_0_1, 0), (self.blocks_add_xx_0, 25))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_1, 0), (self.blocks_add_xx_0, 6))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_1_0, 0), (self.blocks_add_xx_0, 7))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_1_0_0, 0), (self.blocks_add_xx_0, 17))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_1_0_0_0, 0), (self.blocks_add_xx_0, 37))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_1_0_1, 0), (self.blocks_add_xx_0, 27))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_1_1, 0), (self.blocks_add_xx_0, 8))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_1_1_0, 0), (self.blocks_add_xx_0, 18))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_1_1_0_0, 0), (self.blocks_add_xx_0, 38))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_1_1_1, 0), (self.blocks_add_xx_0, 28))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_1_2, 0), (self.blocks_add_xx_0, 9))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_1_2_0, 0), (self.blocks_add_xx_0, 19))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_1_2_0_0, 0), (self.blocks_add_xx_0, 39))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_1_2_1, 0), (self.blocks_add_xx_0, 29))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_1_3, 0), (self.blocks_add_xx_0, 16))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_1_3_0, 0), (self.blocks_add_xx_0, 36))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_1_4, 0), (self.blocks_add_xx_0, 26))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_2, 0), (self.blocks_add_xx_0, 14))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_2_0, 0), (self.blocks_add_xx_0, 34))
+        self.connect((self.analog_pwr_squelch_xx_0_0_2_3, 0), (self.blocks_add_xx_0, 24))
+        self.connect((self.analog_pwr_squelch_xx_0_0_3, 0), (self.blocks_add_xx_0, 11))
+        self.connect((self.analog_pwr_squelch_xx_0_0_3_0, 0), (self.blocks_add_xx_0, 31))
+        self.connect((self.analog_pwr_squelch_xx_0_0_4, 0), (self.blocks_add_xx_0, 21))
+        self.connect((self.analog_pwr_squelch_xx_0_1, 0), (self.blocks_add_xx_0, 10))
+        self.connect((self.analog_pwr_squelch_xx_0_1_0, 0), (self.blocks_add_xx_0, 30))
+        self.connect((self.analog_pwr_squelch_xx_0_2, 0), (self.blocks_add_xx_0, 20))
         self.connect((self.blocks_add_xx_0, 0), (self.rational_resampler_xxx_0, 0))
-        self.connect((self.blocks_complex_to_mag_squared_0, 0), (self.blocks_streams_to_vector_0, 0))
-        self.connect((self.blocks_complex_to_mag_squared_0_0, 0), (self.blocks_streams_to_vector_0, 1))
-        self.connect((self.blocks_complex_to_mag_squared_0_1, 0), (self.blocks_streams_to_vector_0, 2))
-        self.connect((self.blocks_complex_to_mag_squared_0_2, 0), (self.blocks_streams_to_vector_0, 3))
-        self.connect((self.blocks_complex_to_mag_squared_0_3, 0), (self.blocks_streams_to_vector_0, 4))
-        self.connect((self.blocks_complex_to_mag_squared_0_4, 0), (self.blocks_streams_to_vector_0, 5))
-        self.connect((self.blocks_complex_to_mag_squared_0_5, 0), (self.blocks_streams_to_vector_0, 6))
-        self.connect((self.blocks_complex_to_mag_squared_0_6, 0), (self.blocks_streams_to_vector_0, 7))
-        self.connect((self.blocks_complex_to_mag_squared_0_7, 0), (self.blocks_streams_to_vector_0, 8))
-        self.connect((self.blocks_complex_to_mag_squared_0_8, 0), (self.blocks_streams_to_vector_0, 9))
-        self.connect((self.blocks_delay_0, 0), (self.epy_block_0, 0))
-        self.connect((self.blocks_delay_0_0, 0), (self.epy_block_0, 1))
-        self.connect((self.blocks_delay_0_0_0, 0), (self.epy_block_0, 6))
-        self.connect((self.blocks_delay_0_1, 0), (self.epy_block_0, 2))
-        self.connect((self.blocks_delay_0_1_0, 0), (self.epy_block_0, 7))
-        self.connect((self.blocks_delay_0_2, 0), (self.epy_block_0, 3))
-        self.connect((self.blocks_delay_0_2_0, 0), (self.epy_block_0, 8))
-        self.connect((self.blocks_delay_0_3, 0), (self.epy_block_0, 4))
-        self.connect((self.blocks_delay_0_3_0, 0), (self.epy_block_0, 9))
-        self.connect((self.blocks_delay_0_4, 0), (self.epy_block_0, 5))
-        self.connect((self.blocks_streams_to_vector_0, 0), (self.epy_block_0, 10))
-        self.connect((self.epy_block_0, 0), (self.blocks_add_xx_0, 0))
-        self.connect((self.epy_block_0, 1), (self.blocks_add_xx_0, 1))
-        self.connect((self.epy_block_0, 2), (self.blocks_add_xx_0, 2))
-        self.connect((self.epy_block_0, 3), (self.blocks_add_xx_0, 3))
-        self.connect((self.epy_block_0, 4), (self.blocks_add_xx_0, 4))
-        self.connect((self.epy_block_0, 5), (self.blocks_add_xx_0, 5))
-        self.connect((self.epy_block_0, 6), (self.blocks_add_xx_0, 6))
-        self.connect((self.epy_block_0, 7), (self.blocks_add_xx_0, 7))
-        self.connect((self.epy_block_0, 8), (self.blocks_add_xx_0, 8))
-        self.connect((self.epy_block_0, 9), (self.blocks_add_xx_0, 9))
-        self.connect((self.pfb_channelizer_ccf_0, 0), (self.blocks_complex_to_mag_squared_0, 0))
-        self.connect((self.pfb_channelizer_ccf_0, 1), (self.blocks_complex_to_mag_squared_0_0, 0))
-        self.connect((self.pfb_channelizer_ccf_0, 2), (self.blocks_complex_to_mag_squared_0_1, 0))
-        self.connect((self.pfb_channelizer_ccf_0, 3), (self.blocks_complex_to_mag_squared_0_2, 0))
-        self.connect((self.pfb_channelizer_ccf_0, 4), (self.blocks_complex_to_mag_squared_0_3, 0))
-        self.connect((self.pfb_channelizer_ccf_0, 5), (self.blocks_complex_to_mag_squared_0_4, 0))
-        self.connect((self.pfb_channelizer_ccf_0, 6), (self.blocks_complex_to_mag_squared_0_5, 0))
-        self.connect((self.pfb_channelizer_ccf_0, 7), (self.blocks_complex_to_mag_squared_0_6, 0))
-        self.connect((self.pfb_channelizer_ccf_0, 8), (self.blocks_complex_to_mag_squared_0_7, 0))
-        self.connect((self.pfb_channelizer_ccf_0, 9), (self.blocks_complex_to_mag_squared_0_8, 0))
-        self.connect((self.pfb_channelizer_ccf_0, 0), (self.blocks_delay_0, 0))
-        self.connect((self.pfb_channelizer_ccf_0, 1), (self.blocks_delay_0_0, 0))
-        self.connect((self.pfb_channelizer_ccf_0, 6), (self.blocks_delay_0_0_0, 0))
-        self.connect((self.pfb_channelizer_ccf_0, 2), (self.blocks_delay_0_1, 0))
-        self.connect((self.pfb_channelizer_ccf_0, 7), (self.blocks_delay_0_1_0, 0))
-        self.connect((self.pfb_channelizer_ccf_0, 3), (self.blocks_delay_0_2, 0))
-        self.connect((self.pfb_channelizer_ccf_0, 8), (self.blocks_delay_0_2_0, 0))
-        self.connect((self.pfb_channelizer_ccf_0, 4), (self.blocks_delay_0_3, 0))
-        self.connect((self.pfb_channelizer_ccf_0, 9), (self.blocks_delay_0_3_0, 0))
-        self.connect((self.pfb_channelizer_ccf_0, 5), (self.blocks_delay_0_4, 0))
+        self.connect((self.blocks_add_xx_0, 0), (self.wxgui_fftsink2_1, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 0), (self.analog_pwr_squelch_xx_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 1), (self.analog_pwr_squelch_xx_0_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 2), (self.analog_pwr_squelch_xx_0_0_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 12), (self.analog_pwr_squelch_xx_0_0_0_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 32), (self.analog_pwr_squelch_xx_0_0_0_0_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 22), (self.analog_pwr_squelch_xx_0_0_0_1, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 3), (self.analog_pwr_squelch_xx_0_0_1, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 13), (self.analog_pwr_squelch_xx_0_0_1_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 33), (self.analog_pwr_squelch_xx_0_0_1_0_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 23), (self.analog_pwr_squelch_xx_0_0_1_1, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 4), (self.analog_pwr_squelch_xx_0_0_2, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 5), (self.analog_pwr_squelch_xx_0_0_2_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 15), (self.analog_pwr_squelch_xx_0_0_2_0_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 35), (self.analog_pwr_squelch_xx_0_0_2_0_0_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 25), (self.analog_pwr_squelch_xx_0_0_2_0_1, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 6), (self.analog_pwr_squelch_xx_0_0_2_1, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 7), (self.analog_pwr_squelch_xx_0_0_2_1_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 17), (self.analog_pwr_squelch_xx_0_0_2_1_0_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 37), (self.analog_pwr_squelch_xx_0_0_2_1_0_0_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 27), (self.analog_pwr_squelch_xx_0_0_2_1_0_1, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 8), (self.analog_pwr_squelch_xx_0_0_2_1_1, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 18), (self.analog_pwr_squelch_xx_0_0_2_1_1_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 38), (self.analog_pwr_squelch_xx_0_0_2_1_1_0_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 28), (self.analog_pwr_squelch_xx_0_0_2_1_1_1, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 9), (self.analog_pwr_squelch_xx_0_0_2_1_2, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 19), (self.analog_pwr_squelch_xx_0_0_2_1_2_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 39), (self.analog_pwr_squelch_xx_0_0_2_1_2_0_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 29), (self.analog_pwr_squelch_xx_0_0_2_1_2_1, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 16), (self.analog_pwr_squelch_xx_0_0_2_1_3, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 36), (self.analog_pwr_squelch_xx_0_0_2_1_3_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 26), (self.analog_pwr_squelch_xx_0_0_2_1_4, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 14), (self.analog_pwr_squelch_xx_0_0_2_2, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 34), (self.analog_pwr_squelch_xx_0_0_2_2_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 24), (self.analog_pwr_squelch_xx_0_0_2_3, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 11), (self.analog_pwr_squelch_xx_0_0_3, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 31), (self.analog_pwr_squelch_xx_0_0_3_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 21), (self.analog_pwr_squelch_xx_0_0_4, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 10), (self.analog_pwr_squelch_xx_0_1, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 30), (self.analog_pwr_squelch_xx_0_1_0, 0))
+        self.connect((self.pfb_channelizer_ccf_0, 20), (self.analog_pwr_squelch_xx_0_2, 0))
         self.connect((self.rational_resampler_xxx_0, 0), (self.lora_lora_receiver_0, 0))
-        self.connect((self.rational_resampler_xxx_0, 0), (self.lora_lora_receiver_0_0, 0))
-        self.connect((self.rational_resampler_xxx_0, 0), (self.lora_lora_receiver_0_0_0, 0))
-        self.connect((self.rational_resampler_xxx_0, 0), (self.lora_lora_receiver_0_0_1, 0))
-        self.connect((self.rational_resampler_xxx_0, 0), (self.lora_lora_receiver_0_0_2, 0))
-        self.connect((self.rational_resampler_xxx_0, 0), (self.lora_lora_receiver_0_0_3, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.pfb_channelizer_ccf_0, 0))
 
     def get_channels(self):
@@ -191,7 +249,6 @@ class top_block(grc_wxgui.top_block_gui):
     def set_ch_rate(self, ch_rate):
         self.ch_rate = ch_rate
         self.set_samp_rate(self.ch_rate*self.channels)
-        self.epy_block_0.samp_rate = self.ch_rate
         self.set_ch_bw(self.ch_rate/2)
 
     def get_sf(self):
@@ -200,7 +257,6 @@ class top_block(grc_wxgui.top_block_gui):
     def set_sf(self, sf):
         self.sf = sf
         self.set_symbols_per_sec(float(self.bw) / (2**self.sf))
-        self.lora_lora_receiver_0_0_2.set_sf(self.sf)
         self.set_bitrate(self.sf * (1 / (2**self.sf / float(self.bw))))
 
     def get_samp_rate(self):
@@ -208,7 +264,8 @@ class top_block(grc_wxgui.top_block_gui):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.set_taps(firdes.low_pass(1, self.samp_rate, self.ch_bw, self.ch_tb, firdes.WIN_BLACKMAN_hARRIS))
+        self.set_taps(firdes.low_pass(1, self.samp_rate, self.ch_bw, self.ch_tb, firdes.WIN_HAMMING))
+        self.wxgui_fftsink2_1.set_sample_rate(self.samp_rate)
         self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
         self.set_firdes_tap(firdes.low_pass(1, self.samp_rate, self.bw, 10000, firdes.WIN_HAMMING, 6.67))
 
@@ -217,14 +274,14 @@ class top_block(grc_wxgui.top_block_gui):
 
     def set_ch_tb(self, ch_tb):
         self.ch_tb = ch_tb
-        self.set_taps(firdes.low_pass(1, self.samp_rate, self.ch_bw, self.ch_tb, firdes.WIN_BLACKMAN_hARRIS))
+        self.set_taps(firdes.low_pass(1, self.samp_rate, self.ch_bw, self.ch_tb, firdes.WIN_HAMMING))
 
     def get_ch_bw(self):
         return self.ch_bw
 
     def set_ch_bw(self, ch_bw):
         self.ch_bw = ch_bw
-        self.set_taps(firdes.low_pass(1, self.samp_rate, self.ch_bw, self.ch_tb, firdes.WIN_BLACKMAN_hARRIS))
+        self.set_taps(firdes.low_pass(1, self.samp_rate, self.ch_bw, self.ch_tb, firdes.WIN_HAMMING))
 
     def get_bw(self):
         return self.bw
@@ -235,11 +292,58 @@ class top_block(grc_wxgui.top_block_gui):
         self.set_firdes_tap(firdes.low_pass(1, self.samp_rate, self.bw, 10000, firdes.WIN_HAMMING, 6.67))
         self.set_bitrate(self.sf * (1 / (2**self.sf / float(self.bw))))
 
+    def get_thresh(self):
+        return self.thresh
+
+    def set_thresh(self, thresh):
+        self.thresh = thresh
+        self.analog_pwr_squelch_xx_0_2.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_1_0.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_1.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_4.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_3_0.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_3.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_3.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_2_0.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_2.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_1_4.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_1_3_0.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_1_3.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_1_2_1.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_1_2_0_0.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_1_2_0.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_1_2.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_1_1_1.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_1_1_0_0.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_1_1_0.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_1_1.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_1_0_1.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_1_0_0_0.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_1_0_0.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_1_0.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_1.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_0_1.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_0_0_0.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_0_0.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2_0.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_2.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_1_1.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_1_0_0.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_1_0.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_1.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_0_1.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_0_0_0.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_0_0.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0_0.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0_0.set_threshold(self.thresh)
+        self.analog_pwr_squelch_xx_0.set_threshold(self.thresh)
+
     def get_target_freq(self):
         return self.target_freq
 
     def set_target_freq(self, target_freq):
         self.target_freq = target_freq
+        self.wxgui_fftsink2_1.set_baseband_freq(self.target_freq)
 
     def get_taps(self):
         return self.taps
@@ -271,16 +375,6 @@ class top_block(grc_wxgui.top_block_gui):
 
     def set_delay(self, delay):
         self.delay = delay
-        self.blocks_delay_0_4.set_dly(self.delay)
-        self.blocks_delay_0_3_0.set_dly(self.delay)
-        self.blocks_delay_0_3.set_dly(self.delay)
-        self.blocks_delay_0_2_0.set_dly(self.delay)
-        self.blocks_delay_0_2.set_dly(self.delay)
-        self.blocks_delay_0_1_0.set_dly(self.delay)
-        self.blocks_delay_0_1.set_dly(self.delay)
-        self.blocks_delay_0_0_0.set_dly(self.delay)
-        self.blocks_delay_0_0.set_dly(self.delay)
-        self.blocks_delay_0.set_dly(self.delay)
 
     def get_decimation(self):
         return self.decimation
