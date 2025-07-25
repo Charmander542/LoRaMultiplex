@@ -5050,7 +5050,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>args</key>
-      <value></value>
+      <value>rtl=1</value>
     </param>
     <param>
       <key>_enabled</key>
