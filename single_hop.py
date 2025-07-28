@@ -43,7 +43,7 @@ class single(grc_wxgui.top_block_gui):
         self.bw = bw = 125000
         
         # MODIFIED: A list of target frequencies to scan through.
-        self.target_freq = target_freq = [910.3e6, 911.1e6, 911.9e6, 912.7e6, 913.5e6]
+        self.target_freq = target_freq = [910.3e6, 910.1e6, 910.5e6, 910.7e6, 910.9e6]
         
         # MODIFIED: Time in milliseconds to stay on each frequency.
         self.hop_interval = hop_interval = 5000 # 5 seconds
