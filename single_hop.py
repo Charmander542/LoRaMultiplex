@@ -20,6 +20,7 @@ from gnuradio import eng_notation
 from gnuradio import gr
 from gnuradio import wxgui
 from gnuradio.eng_option import eng_option
+from gnuradio import uhd
 from gnuradio.fft import window
 from gnuradio.filter import firdes
 from gnuradio.wxgui import fftsink2
@@ -77,18 +78,22 @@ class single(grc_wxgui.top_block_gui):
         	peak_hold=False,
         )
         self.Add(self.wxgui_fftsink2_1.win)
-        self.osmosdr_source_0 = osmosdr.source( args="numchan=" + str(1) + " " + '' )
-        self.osmosdr_source_0.set_sample_rate(samp_rate)
-        self.osmosdr_source_0.set_center_freq(capture_freq, 0)
-        self.osmosdr_source_0.set_freq_corr(0, 0)
-        self.osmosdr_source_0.set_dc_offset_mode(0, 0)
-        self.osmosdr_source_0.set_iq_balance_mode(0, 0)
-        self.osmosdr_source_0.set_gain_mode(False, 0)
-        self.osmosdr_source_0.set_gain(20, 0)
-        self.osmosdr_source_0.set_if_gain(20, 0)
-        self.osmosdr_source_0.set_bb_gain(20, 0)
-        self.osmosdr_source_0.set_antenna('', 0)
-        self.osmosdr_source_0.set_bandwidth(0, 0)
+        self.uhd_usrp_source_0 = uhd.usrp_source(
+        	",".join(("serial=3134BCA", "")),
+        	uhd.stream_args(
+        		cpu_format="fc32",
+        		channels=range(1),
+        	),
+        )
+        self.uhd_usrp_source_0.set_samp_rate(samp_rate)
+        self.uhd_usrp_source_0.set_center_freq(capture_freq, 0)
+        self.uhd_usrp_source_0.set_gain(20, 0)
+        self.rational_resampler_xxx_0 = filter.rational_resampler_ccc(
+                interpolation=5,
+                decimation=8,
+                taps=(firdes.low_pass(1, 400000, 62500, 20000, window.WIN_HAMMING)),
+                fractional_bw=None,
+        )
 
         self.lora_message_socket_sink_0 = lora.message_socket_sink('127.0.0.1', 40868, 0)
 
@@ -105,8 +110,8 @@ class single(grc_wxgui.top_block_gui):
         # Connections
         ##################################################
         self.msg_connect((self.lora_lora_receiver_0, 'frames'), (self.lora_message_socket_sink_0, 'in'))
-        self.connect((self.osmosdr_source_0, 0), (self.lora_lora_receiver_0, 0))
-        self.connect((self.osmosdr_source_0, 0), (self.wxgui_fftsink2_1, 0))
+        self.connect((self.uhd_usrp_source_0, 0), (self.lora_lora_receiver_0, 0))
+        self.connect((self.uhd_usrp_source_0, 0), (self.wxgui_fftsink2_1, 0))
 
     # MODIFIED: Override Start method to start the timer
     def Start(self, *args, **kwargs):
@@ -141,7 +146,7 @@ class single(grc_wxgui.top_block_gui):
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
         self.wxgui_fftsink2_1.set_sample_rate(self.samp_rate)
-        self.osmosdr_source_0.set_sample_rate(self.samp_rate)
+        self.uhd_usrp_source_0.set_sample_rate(self.samp_rate)
         self.set_firdes_tap(firdes.low_pass(1, self.samp_rate, self.bw, 10000, firdes.WIN_HAMMING, 6.67))
 
     def get_bw(self):
@@ -192,7 +197,7 @@ class single(grc_wxgui.top_block_gui):
     def set_capture_freq(self, capture_freq):
         self.capture_freq = capture_freq
         self.wxgui_fftsink2_1.set_baseband_freq(self.capture_freq)
-        self.osmosdr_source_0.set_center_freq(self.capture_freq, 0)
+        self.uhd_usrp_source_0.set_center_freq(self.capture_freq, 0)
 
     def get_bitrate(self):
         return self.bitrate
