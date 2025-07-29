@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Hopping (Corrected)
+# Title: Hopping (Final Corrected Version)
 # Generated: Thu Jul 24 17:26:10 2025
 ##################################################
 
@@ -34,14 +34,14 @@ import wx
 class single(grc_wxgui.top_block_gui):
 
     def __init__(self):
-        # Call the parent constructor FIRST. This is critical.
+        # STEP 1: Call the parent constructor. This will internally call our
+        # overridden Start() method below, but that's okay because of Step 4.
         grc_wxgui.top_block_gui.__init__(self, title="Hopping")
 
         ##################################################
-        # Variables
+        # STEP 2: Define all class variables.
+        # These are now set on the object *after* the parent __init__ is done.
         ##################################################
-        # Now, define all your variables. They are guaranteed to exist
-        # before our custom Start() logic is called.
         self.sf = sf = 7
         self.samp_rate = samp_rate = 1e6
         self.bw = bw = 125000
@@ -49,8 +49,7 @@ class single(grc_wxgui.top_block_gui):
         self.hop_interval = hop_interval = 1000 # 1 second
         self.freq_index = freq_index = 0
         self.capture_freq = capture_freq = 903e6
-        # ... (add any other variables here) ...
-
+        # (Other variables would go here)
 
         ##################################################
         # Blocks
@@ -88,7 +87,6 @@ class single(grc_wxgui.top_block_gui):
         ##################################################
         # Timer for frequency hopping
         ##################################################
-        # Define the timer object here.
         self.hop_timer = wx.Timer(self, wx.ID_ANY)
         self.Bind(wx.EVT_TIMER, self._on_hop_timer, self.hop_timer)
 
@@ -100,22 +98,23 @@ class single(grc_wxgui.top_block_gui):
         self.connect((self.uhd_usrp_source_0, 0), (self.wxgui_fftsink2_1, 0))
 
 
-    # This custom Start method overrides the parent's
+    # STEP 3: Override the Start method
     def Start(self, *args, **kwargs):
-        # First, call the original Start method from the parent class.
-        # This builds and starts the underlying flowgraph.
+        # STEP 4: Call the parent's Start method FIRST. This starts the
+        # actual GNU Radio flowgraph.
         super(single, self).Start(*args, **kwargs)
 
-        # NOW, it is safe to access self.hop_interval and start our timer.
-        if self.hop_interval > 0:
+        # STEP 5: Now, and only now, is it safe to start your custom logic.
+        # At this point, __init__ has completed and self.hop_interval exists.
+        if hasattr(self, 'hop_interval') and self.hop_interval > 0:
             self.hop_timer.Start(self.hop_interval)
 
-    # It is good practice to also override Stop
+    # It's good practice to also override Stop
     def Stop(self, *args, **kwargs):
-        # Stop our custom timer first
-        self.hop_timer.Stop()
-        # Then call the parent's Stop method
+        if hasattr(self, 'hop_timer'):
+            self.hop_timer.Stop()
         super(single, self).Stop(*args, **kwargs)
+
 
     def _on_hop_timer(self, event):
         self.freq_index = (self.freq_index + 1) % len(self.target_freq)
@@ -123,7 +122,7 @@ class single(grc_wxgui.top_block_gui):
         self.lora_lora_receiver_0.set_frequencies([new_freq])
         print("Hopping to frequency: %.2f MHz" % (new_freq / 1e6))
 
-    # --- (getter and setter methods remain here) ---
+    # --- (all your getter and setter methods go here) ---
 
 
 def main(top_block_cls=single, options=None):
