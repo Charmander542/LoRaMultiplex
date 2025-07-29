@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Hopping (Final Corrected Version)
+# Title: Hopping (Final Version with Message Strobe)
 # Generated: Thu Jul 24 17:26:10 2025
 ##################################################
 
@@ -16,6 +16,7 @@ if __name__ == '__main__':
         except:
             print "Warning: failed to XInitThreads()"
 
+from gnuradio import blocks  # Need this for the Message Strobe
 from gnuradio import eng_notation
 from gnuradio import gr
 from gnuradio import wxgui
@@ -47,15 +48,20 @@ class single(grc_wxgui.top_block_gui):
         self.hop_interval = hop_interval = 1000 # 1 second
         self.freq_index = freq_index = 0
         self.capture_freq = capture_freq = 903e6
+        # Other variables...
         self.symbols_per_sec = symbols_per_sec = float(bw) / (2**sf)
         self.firdes_tap = firdes_tap = firdes.low_pass(1, samp_rate, bw, 10000, firdes.WIN_HAMMING, 6.67)
         self.downlink = downlink = False
         self.decimation = decimation = 1
         self.bitrate = bitrate = sf * (1 / (2**sf / float(bw)))
 
+
         ##################################################
         # Blocks
         ##################################################
+        # A new block to generate messages
+        self.blocks_message_strobe_0 = blocks.message_strobe(pmt.PMT_NIL, 1000) # Placeholder message and interval
+
         self.wxgui_fftsink2_1 = fftsink2.fft_sink_c(
         	self.GetWin(),
         	baseband_freq=capture_freq,
@@ -96,6 +102,9 @@ class single(grc_wxgui.top_block_gui):
         # Connections
         ##################################################
         self.msg_connect((self.lora_lora_receiver_0, 'frames'), (self.lora_message_socket_sink_0, 'in'))
+        # This is the new, critical connection:
+        self.msg_connect((self.blocks_message_strobe_0, 'strobe'), (self.lora_lora_receiver_0, 'command'))
+        
         self.connect((self.uhd_usrp_source_0, 0), (self.lora_lora_receiver_0, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.wxgui_fftsink2_1, 0))
 
@@ -113,47 +122,18 @@ class single(grc_wxgui.top_block_gui):
         self.freq_index = (self.freq_index + 1) % len(self.target_freq)
         new_freq = self.target_freq[self.freq_index]
 
+        # Construct the message dictionary
         msg_dict = pmt.make_dict()
         msg_dict = pmt.dict_add(msg_dict, pmt.intern("freq"), pmt.from_double(new_freq))
         
-        # CORRECTED: Use message_port_post to send a message to an input port.
-        # The port name is assumed to be 'command'. If this fails, try 'cmd'.
-        self.lora_lora_receiver_0.message_port_post(pmt.intern("command"), msg_dict)
+        # Instead of trying to call a function, we now tell the Message Strobe
+        # what message to send on its next strobe. We then trigger that strobe.
+        self.blocks_message_strobe_0.set_msg(msg_dict)
         
-        print("Hopping LoRa channel to: %.2f MHz" % (new_freq / 1e6))
+        print("Commanding hop to: %.2f MHz" % (new_freq / 1e6))
 
 
     # --- Getter/Setter Methods ---
-    def get_sf(self):
-        return self.sf
-
-    def set_sf(self, sf):
-        self.sf = sf
-        self.set_symbols_per_sec(float(self.bw) / (2**self.sf))
-        # Note: Changing SF at runtime might require a message, similar to frequency.
-        # For now, assuming a direct setter exists.
-        if hasattr(self.lora_lora_receiver_0, 'set_sf'):
-             self.lora_lora_receiver_0.set_sf(self.sf)
-        self.set_bitrate(self.sf * (1 / (2**self.sf / float(self.bw))))
-
-    def get_samp_rate(self):
-        return self.samp_rate
-
-    def set_samp_rate(self, samp_rate):
-        self.samp_rate = samp_rate
-        self.wxgui_fftsink2_1.set_sample_rate(self.samp_rate)
-        self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
-        self.set_firdes_tap(firdes.low_pass(1, self.samp_rate, self.bw, 10000, firdes.WIN_HAMMING, 6.67))
-
-    def get_bw(self):
-        return self.bw
-
-    def set_bw(self, bw):
-        self.bw = bw
-        self.set_symbols_per_sec(float(self.bw) / (2**self.sf))
-        self.set_firdes_tap(firdes.low_pass(1, self.samp_rate, self.bw, 10000, firdes.WIN_HAMMING, 6.67))
-        self.set_bitrate(self.sf * (1 / (2**self.sf / float(self.bw))))
-
     def get_target_freq(self):
         return self.target_freq
 
@@ -161,49 +141,47 @@ class single(grc_wxgui.top_block_gui):
         self.target_freq = target_freq
         self.freq_index = 0
         new_initial_freq = self.target_freq[self.freq_index]
+        
         msg_dict = pmt.make_dict()
         msg_dict = pmt.dict_add(msg_dict, pmt.intern("freq"), pmt.from_double(new_initial_freq))
-        
-        # CORRECTED: Use message_port_post here as well.
-        self.lora_lora_receiver_0.message_port_post(pmt.intern("command"), msg_dict)
+        self.blocks_message_strobe_0.set_msg(msg_dict)
 
-    def get_symbols_per_sec(self):
-        return self.symbols_per_sec
 
-    def set_symbols_per_sec(self, symbols_per_sec):
-        self.symbols_per_sec = symbols_per_sec
-
-    def get_firdes_tap(self):
-        return self.firdes_tap
-
-    def set_firdes_tap(self, firdes_tap):
-        self.firdes_tap = firdes_tap
-
-    def get_downlink(self):
-        return self.downlink
-
-    def set_downlink(self, downlink):
-        self.downlink = downlink
-
-    def get_decimation(self):
-        return self.decimation
-
-    def set_decimation(self, decimation):
-        self.decimation = decimation
-
-    def get_capture_freq(self):
-        return self.capture_freq
-
+    # (The rest of the getters and setters remain the same)
+    def get_sf(self): return self.sf
+    def set_sf(self, sf):
+        self.sf = sf
+        self.set_symbols_per_sec(float(self.bw) / (2**self.sf))
+        if hasattr(self.lora_lora_receiver_0, 'set_sf'):
+             self.lora_lora_receiver_0.set_sf(self.sf)
+        self.set_bitrate(self.sf * (1 / (2**self.sf / float(self.bw))))
+    def get_samp_rate(self): return self.samp_rate
+    def set_samp_rate(self, samp_rate):
+        self.samp_rate = samp_rate
+        self.wxgui_fftsink2_1.set_sample_rate(self.samp_rate)
+        self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
+        self.set_firdes_tap(firdes.low_pass(1, self.samp_rate, self.bw, 10000, firdes.WIN_HAMMING, 6.67))
+    def get_bw(self): return self.bw
+    def set_bw(self, bw):
+        self.bw = bw
+        self.set_symbols_per_sec(float(self.bw) / (2**self.sf))
+        self.set_firdes_tap(firdes.low_pass(1, self.samp_rate, self.bw, 10000, firdes.WIN_HAMMING, 6.67))
+        self.set_bitrate(self.sf * (1 / (2**self.sf / float(self.bw))))
+    def get_symbols_per_sec(self): return self.symbols_per_sec
+    def set_symbols_per_sec(self, symbols_per_sec): self.symbols_per_sec = symbols_per_sec
+    def get_firdes_tap(self): return self.firdes_tap
+    def set_firdes_tap(self, firdes_tap): self.firdes_tap = firdes_tap
+    def get_downlink(self): return self.downlink
+    def set_downlink(self, downlink): self.downlink = downlink
+    def get_decimation(self): return self.decimation
+    def set_decimation(self, decimation): self.decimation = decimation
+    def get_capture_freq(self): return self.capture_freq
     def set_capture_freq(self, capture_freq):
         self.capture_freq = capture_freq
         self.wxgui_fftsink2_1.set_baseband_freq(self.capture_freq)
         self.uhd_usrp_source_0.set_center_freq(self.capture_freq, 0)
-
-    def get_bitrate(self):
-        return self.bitrate
-
-    def set_bitrate(self, bitrate):
-        self.bitrate = bitrate
+    def get_bitrate(self): return self.bitrate
+    def set_bitrate(self, bitrate): self.bitrate = bitrate
 
 
 def main(top_block_cls=single, options=None):
