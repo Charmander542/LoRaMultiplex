@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Hopping
+# Title: Hopping with Resampler
 # Generated: Thu Jul 24 17:26:10 2025
 ##################################################
 
@@ -22,7 +22,9 @@ from gnuradio import wxgui
 from gnuradio.eng_option import eng_option
 from gnuradio import uhd
 from gnuradio.fft import window
+# MODIFIED: Import 'filter' module and 'firdes' from it
 from gnuradio.filter import firdes
+from gnuradio import filter
 from gnuradio.wxgui import fftsink2
 from grc_gnuradio import wxgui as grc_wxgui
 from optparse import OptionParser
@@ -43,13 +45,10 @@ class single(grc_wxgui.top_block_gui):
         self.samp_rate = samp_rate = 1e6
         self.bw = bw = 125000
         
-        # MODIFIED: A list of target frequencies to scan through.
         self.target_freq = target_freq = [902.3e6, 902.5e6, 902.7e6, 902.9e6, 903.1e6, 903.3e6, 903.5e6, 903.7e6, 903.9e6, 904.1e6]
         
-        # MODIFIED: Time in milliseconds to stay on each frequency.
-        self.hop_interval = hop_interval = 1000 # 5 seconds
+        self.hop_interval = hop_interval = 1000 # 1 second
         
-        # MODIFIED: Index to keep track of the current frequency.
         self.freq_index = freq_index = 0
 
         self.symbols_per_sec = symbols_per_sec = float(bw) / (2**sf)
@@ -58,6 +57,9 @@ class single(grc_wxgui.top_block_gui):
         self.decimation = decimation = 1
         self.capture_freq = capture_freq = 903e6
         self.bitrate = bitrate = sf * (1 / (2**sf / float(bw)))
+        
+        # MODIFIED: Calculate the new sample rate after resampling
+        self.resampled_rate = resampled_rate = samp_rate * 5 / 8
 
         ##################################################
         # Blocks
@@ -74,7 +76,7 @@ class single(grc_wxgui.top_block_gui):
         	fft_rate=15,
         	average=False,
         	avg_alpha=None,
-        	title='FFT Plot',
+        	title='FFT Plot (Before Resampling)',
         	peak_hold=False,
         )
         self.Add(self.wxgui_fftsink2_1.win)
@@ -88,20 +90,23 @@ class single(grc_wxgui.top_block_gui):
         self.uhd_usrp_source_0.set_samp_rate(samp_rate)
         self.uhd_usrp_source_0.set_center_freq(capture_freq, 0)
         self.uhd_usrp_source_0.set_gain(20, 0)
+        
+        # MODIFIED: Re-added the Rational Resampler block
         self.rational_resampler_xxx_0 = filter.rational_resampler_ccc(
                 interpolation=5,
                 decimation=8,
-                taps=(firdes.low_pass(1, 400000, 62500, 20000, window.WIN_HAMMING)),
+                # Taps are corrected to use the proper input sample rate
+                taps=(firdes.low_pass(1, samp_rate, 62500, 20000, window.WIN_HAMMING)),
                 fractional_bw=None,
         )
 
         self.lora_message_socket_sink_0 = lora.message_socket_sink('127.0.0.1', 40868, 0)
 
-        # MODIFIED: Initialize the receiver with the FIRST frequency in the list.
-        self.lora_lora_receiver_0 = lora.lora_receiver(samp_rate, capture_freq, ([self.target_freq[self.freq_index]]), bw, sf, False, 4, True, False, downlink, decimation, False, False)
+        # MODIFIED: The LoRa receiver now expects the NEW, resampled rate
+        self.lora_lora_receiver_0 = lora.lora_receiver(resampled_rate, capture_freq, ([self.target_freq[self.freq_index]]), bw, sf, False, 4, True, False, downlink, decimation, False, False)
         
         ##################################################
-        # MODIFIED: Timer for frequency hopping
+        # Timer for frequency hopping
         ##################################################
         self.hop_timer = wx.Timer(self, wx.ID_ANY)
         self.Bind(wx.EVT_TIMER, self._on_hop_timer, self.hop_timer)
@@ -109,26 +114,25 @@ class single(grc_wxgui.top_block_gui):
         ##################################################
         # Connections
         ##################################################
-        self.msg_connect((self.lora_lora_receiver_0, 'frames'), (self.lora_message_socket_sink_0, 'in'))
-        self.connect((self.uhd_usrp_source_0, 0), (self.lora_lora_receiver_0, 0))
+        # The FFT sink is still connected to the original source
         self.connect((self.uhd_usrp_source_0, 0), (self.wxgui_fftsink2_1, 0))
+        
+        # MODIFIED: Data now flows from source -> resampler -> lora_receiver
+        self.connect((self.uhd_usrp_source_0, 0), (self.rational_resampler_xxx_0, 0))
+        self.connect((self.rational_resampler_xxx_0, 0), (self.lora_lora_receiver_0, 0))
+        
+        self.msg_connect((self.lora_lora_receiver_0, 'frames'), (self.lora_message_socket_sink_0, 'in'))
 
-    # MODIFIED: Override Start method to start the timer
+
     def Start(self, *args, **kwargs):
         super(single, self).Start(*args, **kwargs)
         if self.hop_interval > 0:
             self.hop_timer.Start(self.hop_interval)
 
-    # MODIFIED: New method to handle the timer event
     def _on_hop_timer(self, event):
-        # Move to the next frequency in the list, wrapping around if at the end
         self.freq_index = (self.freq_index + 1) % len(self.target_freq)
         new_freq = self.target_freq[self.freq_index]
-        
-        # Command the lora_receiver to hop to the new frequency
         self.lora_lora_receiver_0.set_frequencies([new_freq])
-        
-        # Optional: Print to console to see the hopping in action
         print("Hopping to frequency: %.2f MHz" % (new_freq / 1e6))
 
     def get_sf(self):
@@ -145,6 +149,8 @@ class single(grc_wxgui.top_block_gui):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
+        # Note: Changing sample rate at runtime would require more logic
+        # to update the resampler and derived rates.
         self.wxgui_fftsink2_1.set_sample_rate(self.samp_rate)
         self.uhd_usrp_source_0.set_sample_rate(self.samp_rate)
         self.set_firdes_tap(firdes.low_pass(1, self.samp_rate, self.bw, 10000, firdes.WIN_HAMMING, 6.67))
@@ -163,7 +169,6 @@ class single(grc_wxgui.top_block_gui):
 
     def set_target_freq(self, target_freq):
         self.target_freq = target_freq
-        # When the list is changed, we reset the index and set the first frequency
         self.freq_index = 0
         self.lora_lora_receiver_0.set_frequencies([self.target_freq[self.freq_index]])
 
@@ -207,10 +212,14 @@ class single(grc_wxgui.top_block_gui):
 
 
 def main(top_block_cls=single, options=None):
-
-    tb = top_block_cls()
-    tb.Start(True)
-    tb.Wait()
+    try:
+        tb = top_block_cls()
+        tb.Start(True)
+        tb.Wait()
+    except Exception as e:
+        print "Error starting flowgraph: %s" % e
+        import traceback
+        traceback.print_exc()
 
 
 if __name__ == '__main__':
