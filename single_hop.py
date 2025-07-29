@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Hopping (Corrected with Selector)
+# Title: Hopping (Final with gr.selector)
 # Generated: Thu Jul 24 17:26:10 2025
 ##################################################
 
@@ -16,9 +16,8 @@ if __name__ == '__main__':
         except:
             print "Warning: failed to XInitThreads()"
 
-from gnuradio import blocks
 from gnuradio import eng_notation
-from gnuradio import gr
+from gnuradio import gr  # The 'gr' module is where we now expect to find selector
 from gnuradio import wxgui
 from gnuradio.eng_option import eng_option
 from gnuradio import uhd
@@ -67,9 +66,9 @@ class single(grc_wxgui.top_block_gui):
         
         self.lora_message_socket_sink_0 = lora.message_socket_sink('127.0.0.1', 40868, 0)
 
-        # Create the Selector block
+        # Create the Selector block from the 'gr' module
         num_channels = len(self.target_freq)
-        self.blocks_selector_0 = blocks.selector(
+        self.blocks_selector_0 = gr.selector(
             item_size=gr.sizeof_gr_complex,
             num_inputs=1,
             num_outputs=num_channels
@@ -93,13 +92,9 @@ class single(grc_wxgui.top_block_gui):
         ##################################################
         # Connections
         ##################################################
-        # Connect USRP to the single input of the Selector
         self.connect((self.uhd_usrp_source_0, 0), (self.blocks_selector_0, 0))
-        
-        # Connect USRP to the FFT sink (as before)
         self.connect((self.uhd_usrp_source_0, 0), (self.wxgui_fftsink2_1, 0))
 
-        # Connect each output of the Selector to a different LoRa receiver
         for i in range(num_channels):
             self.connect((self.blocks_selector_0, i), (self.lora_receivers[i], 0))
             self.msg_connect((self.lora_receivers[i], 'frames'), (self.lora_message_socket_sink_0, 'in'))
@@ -107,20 +102,14 @@ class single(grc_wxgui.top_block_gui):
     def perform_hop(self, event):
         """The main hopping logic using the Selector."""
         self.freq_index = (self.freq_index + 1) % len(self.target_freq)
-        
-        # Simply tell the selector to change its active output port.
-        # This is instantaneous and thread-safe.
         self.blocks_selector_0.set_output_index(self.freq_index)
-        
         print("Hopping to channel %d: %.2f MHz" % (self.freq_index, self.target_freq[self.freq_index] / 1e6))
 
     def Start(self, *args, **kwargs):
         super(single, self).Start(*args, **kwargs)
         if hasattr(self, 'hop_interval') and self.hop_interval > 0:
-            # Set the initial channel before starting the timer
             self.blocks_selector_0.set_output_index(self.freq_index)
             print("Starting on channel %d: %.2f MHz" % (self.freq_index, self.target_freq[self.freq_index] / 1e6))
-            # Start the timer
             self.hop_timer.Start(self.hop_interval)
 
     def Stop(self, *args, **kwargs):
@@ -128,12 +117,18 @@ class single(grc_wxgui.top_block_gui):
             self.hop_timer.Stop()
         super(single, self).Stop(*args, **kwargs)
 
-    # Other getters/setters are now less relevant for hopping but kept for completeness
+    # Getter/setter methods
     def get_sf(self): return self.sf
+    def set_sf(self, sf): self.sf = sf
     def get_samp_rate(self): return self.samp_rate
+    def set_samp_rate(self, samp_rate): self.samp_rate = samp_rate
     def get_bw(self): return self.bw
+    def set_bw(self, bw): self.bw = bw
     def get_target_freq(self): return self.target_freq
+    def set_target_freq(self, target_freq): self.target_freq = target_freq
     def get_capture_freq(self): return self.capture_freq
+    def set_capture_freq(self, capture_freq): self.capture_freq = capture_freq
+
 
 def main(top_block_cls=single, options=None):
     try:
