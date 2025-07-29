@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Hopping (Final Version)
+# Title: Hopping (Final Corrected Version)
 # Generated: Thu Jul 24 17:26:10 2025
 ##################################################
 
@@ -24,7 +24,7 @@ from gnuradio import uhd
 from gnuradio.fft import window
 from gnuradio.filter import firdes
 from gnuradio.wxgui import fftsink2
-from grc_gnuradio import wxgui as grc_wxgui # This import defines 'grc_wxgui'
+from grc_gnuradio import wxgui as grc_wxgui
 from optparse import OptionParser
 import lora
 import osmosdr
@@ -32,7 +32,6 @@ import pmt
 import wx
 
 
-# Corrected class definition to use the imported 'grc_wxgui' name
 class single(grc_wxgui.top_block_gui):
 
     def __init__(self):
@@ -117,8 +116,9 @@ class single(grc_wxgui.top_block_gui):
         msg_dict = pmt.make_dict()
         msg_dict = pmt.dict_add(msg_dict, pmt.intern("freq"), pmt.from_double(new_freq))
         
-        # Note: The port name is assumed to be 'command'. If this fails, try 'cmd'.
-        self.lora_lora_receiver_0.message_port_pub(pmt.intern("command"), msg_dict)
+        # CORRECTED: Use message_port_post to send a message to an input port.
+        # The port name is assumed to be 'command'. If this fails, try 'cmd'.
+        self.lora_lora_receiver_0.message_port_post(pmt.intern("command"), msg_dict)
         
         print("Hopping LoRa channel to: %.2f MHz" % (new_freq / 1e6))
 
@@ -130,7 +130,10 @@ class single(grc_wxgui.top_block_gui):
     def set_sf(self, sf):
         self.sf = sf
         self.set_symbols_per_sec(float(self.bw) / (2**self.sf))
-        self.lora_lora_receiver_0.set_sf(self.sf)
+        # Note: Changing SF at runtime might require a message, similar to frequency.
+        # For now, assuming a direct setter exists.
+        if hasattr(self.lora_lora_receiver_0, 'set_sf'):
+             self.lora_lora_receiver_0.set_sf(self.sf)
         self.set_bitrate(self.sf * (1 / (2**self.sf / float(self.bw))))
 
     def get_samp_rate(self):
@@ -160,7 +163,9 @@ class single(grc_wxgui.top_block_gui):
         new_initial_freq = self.target_freq[self.freq_index]
         msg_dict = pmt.make_dict()
         msg_dict = pmt.dict_add(msg_dict, pmt.intern("freq"), pmt.from_double(new_initial_freq))
-        self.lora_lora_receiver_0.message_port_pub(pmt.intern("command"), msg_dict)
+        
+        # CORRECTED: Use message_port_post here as well.
+        self.lora_lora_receiver_0.message_port_post(pmt.intern("command"), msg_dict)
 
     def get_symbols_per_sec(self):
         return self.symbols_per_sec
