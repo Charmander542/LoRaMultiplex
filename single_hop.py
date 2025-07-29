@@ -34,14 +34,14 @@ import wx
 class single(grc_wxgui.top_block_gui):
 
     def __init__(self):
-        # Call the parent constructor FIRST.
+        # Call the parent constructor FIRST. This is critical.
         grc_wxgui.top_block_gui.__init__(self, title="Hopping")
 
         ##################################################
         # Variables
         ##################################################
-        # Now define all your variables. They will be properly set on the
-        # Python object before the Start method is called by the GUI.
+        # Now, define all your variables. They are guaranteed to exist
+        # before our custom Start() logic is called.
         self.sf = sf = 7
         self.samp_rate = samp_rate = 1e6
         self.bw = bw = 125000
@@ -49,7 +49,8 @@ class single(grc_wxgui.top_block_gui):
         self.hop_interval = hop_interval = 1000 # 1 second
         self.freq_index = freq_index = 0
         self.capture_freq = capture_freq = 903e6
-        # ... (other variables) ...
+        # ... (add any other variables here) ...
+
 
         ##################################################
         # Blocks
@@ -83,7 +84,14 @@ class single(grc_wxgui.top_block_gui):
 
         self.lora_message_socket_sink_0 = lora.message_socket_sink('127.0.0.1', 40868, 0)
         self.lora_lora_receiver_0 = lora.lora_receiver(self.samp_rate, self.capture_freq, ([self.target_freq[self.freq_index]]), self.bw, self.sf, False, 4, True, False, False, 1, False, False)
-        
+
+        ##################################################
+        # Timer for frequency hopping
+        ##################################################
+        # Define the timer object here.
+        self.hop_timer = wx.Timer(self, wx.ID_ANY)
+        self.Bind(wx.EVT_TIMER, self._on_hop_timer, self.hop_timer)
+
         ##################################################
         # Connections
         ##################################################
@@ -91,24 +99,22 @@ class single(grc_wxgui.top_block_gui):
         self.connect((self.uhd_usrp_source_0, 0), (self.lora_lora_receiver_0, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.wxgui_fftsink2_1, 0))
 
-        ##################################################
-        # Timer for frequency hopping
-        ##################################################
-        # It's safe to define the timer here, but we will start it in our own Start() method.
-        self.hop_timer = wx.Timer(self, wx.ID_ANY)
-        self.Bind(wx.EVT_TIMER, self._on_hop_timer, self.hop_timer)
 
-    # This method is called by the parent __init__
+    # This custom Start method overrides the parent's
     def Start(self, *args, **kwargs):
-        # First, call the original Start method from the parent class
+        # First, call the original Start method from the parent class.
+        # This builds and starts the underlying flowgraph.
         super(single, self).Start(*args, **kwargs)
-        # Now that the flowgraph is running, it's safe to start our timer
+
+        # NOW, it is safe to access self.hop_interval and start our timer.
         if self.hop_interval > 0:
             self.hop_timer.Start(self.hop_interval)
 
+    # It is good practice to also override Stop
     def Stop(self, *args, **kwargs):
-        # It's good practice to stop the timer when the flowgraph stops
+        # Stop our custom timer first
         self.hop_timer.Stop()
+        # Then call the parent's Stop method
         super(single, self).Stop(*args, **kwargs)
 
     def _on_hop_timer(self, event):
@@ -117,7 +123,7 @@ class single(grc_wxgui.top_block_gui):
         self.lora_lora_receiver_0.set_frequencies([new_freq])
         print("Hopping to frequency: %.2f MHz" % (new_freq / 1e6))
 
-    # --- (rest of your getter/setter methods remain the same) ---
+    # --- (getter and setter methods remain here) ---
 
 
 def main(top_block_cls=single, options=None):
@@ -126,11 +132,9 @@ def main(top_block_cls=single, options=None):
         tb.Start(True)
         tb.Wait()
     except Exception as e:
-        # This will catch other potential errors during startup
         print "Error starting flowgraph: %s" % e
         import traceback
         traceback.print_exc()
-
 
 if __name__ == '__main__':
     main()
