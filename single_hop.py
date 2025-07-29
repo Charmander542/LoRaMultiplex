@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Hopping (Final Version with Message Strobe)
+# Title: Hopping (Final Version with Correct Port Name)
 # Generated: Thu Jul 24 17:26:10 2025
 ##################################################
 
@@ -16,7 +16,7 @@ if __name__ == '__main__':
         except:
             print "Warning: failed to XInitThreads()"
 
-from gnuradio import blocks  # Need this for the Message Strobe
+from gnuradio import blocks
 from gnuradio import eng_notation
 from gnuradio import gr
 from gnuradio import wxgui
@@ -48,19 +48,16 @@ class single(grc_wxgui.top_block_gui):
         self.hop_interval = hop_interval = 1000 # 1 second
         self.freq_index = freq_index = 0
         self.capture_freq = capture_freq = 903e6
-        # Other variables...
         self.symbols_per_sec = symbols_per_sec = float(bw) / (2**sf)
         self.firdes_tap = firdes_tap = firdes.low_pass(1, samp_rate, bw, 10000, firdes.WIN_HAMMING, 6.67)
         self.downlink = downlink = False
         self.decimation = decimation = 1
         self.bitrate = bitrate = sf * (1 / (2**sf / float(bw)))
 
-
         ##################################################
         # Blocks
         ##################################################
-        # A new block to generate messages
-        self.blocks_message_strobe_0 = blocks.message_strobe(pmt.PMT_NIL, 1000) # Placeholder message and interval
+        self.blocks_message_strobe_0 = blocks.message_strobe(pmt.PMT_NIL, 1000)
 
         self.wxgui_fftsink2_1 = fftsink2.fft_sink_c(
         	self.GetWin(),
@@ -102,8 +99,9 @@ class single(grc_wxgui.top_block_gui):
         # Connections
         ##################################################
         self.msg_connect((self.lora_lora_receiver_0, 'frames'), (self.lora_message_socket_sink_0, 'in'))
-        # This is the new, critical connection:
-        self.msg_connect((self.blocks_message_strobe_0, 'strobe'), (self.lora_lora_receiver_0, 'command'))
+        
+        # CORRECTED CONNECTION: Use the correct port name 'cmd'.
+        self.msg_connect((self.blocks_message_strobe_0, 'strobe'), (self.lora_lora_receiver_0, 'cmd'))
         
         self.connect((self.uhd_usrp_source_0, 0), (self.lora_lora_receiver_0, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.wxgui_fftsink2_1, 0))
@@ -122,12 +120,9 @@ class single(grc_wxgui.top_block_gui):
         self.freq_index = (self.freq_index + 1) % len(self.target_freq)
         new_freq = self.target_freq[self.freq_index]
 
-        # Construct the message dictionary
         msg_dict = pmt.make_dict()
         msg_dict = pmt.dict_add(msg_dict, pmt.intern("freq"), pmt.from_double(new_freq))
         
-        # Instead of trying to call a function, we now tell the Message Strobe
-        # what message to send on its next strobe. We then trigger that strobe.
         self.blocks_message_strobe_0.set_msg(msg_dict)
         
         print("Commanding hop to: %.2f MHz" % (new_freq / 1e6))
@@ -146,8 +141,6 @@ class single(grc_wxgui.top_block_gui):
         msg_dict = pmt.dict_add(msg_dict, pmt.intern("freq"), pmt.from_double(new_initial_freq))
         self.blocks_message_strobe_0.set_msg(msg_dict)
 
-
-    # (The rest of the getters and setters remain the same)
     def get_sf(self): return self.sf
     def set_sf(self, sf):
         self.sf = sf
