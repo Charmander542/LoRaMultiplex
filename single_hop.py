@@ -44,10 +44,10 @@ class single(grc_wxgui.top_block_gui):
         self.bw = bw = 125000
         
         # MODIFIED: A list of target frequencies to scan through.
-        self.target_freq = target_freq = [910.3e6, 910.1e6, 910.5e6, 910.7e6, 910.9e6]
+        self.target_freq = target_freq = [902.3e6, 902.5e6, 902.7e6, 902.9e6, 903.1e6, 903.3e6, 903.5e6, 903.7e6, 903.9e6, 904.1e6]
         
         # MODIFIED: Time in milliseconds to stay on each frequency.
-        self.hop_interval = hop_interval = 5000 # 5 seconds
+        self.hop_interval = hop_interval = 1000 # 5 seconds
         
         # MODIFIED: Index to keep track of the current frequency.
         self.freq_index = freq_index = 0
@@ -56,7 +56,7 @@ class single(grc_wxgui.top_block_gui):
         self.firdes_tap = firdes_tap = firdes.low_pass(1, samp_rate, bw, 10000, firdes.WIN_HAMMING, 6.67)
         self.downlink = downlink = False
         self.decimation = decimation = 1
-        self.capture_freq = capture_freq = 910e6
+        self.capture_freq = capture_freq = 903e6
         self.bitrate = bitrate = sf * (1 / (2**sf / float(bw)))
 
         ##################################################
