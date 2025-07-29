@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Hopping (Corrected)
+# Title: Hopping (Corrected with Message Passing)
 # Generated: Thu Jul 24 17:26:10 2025
 ##################################################
 
@@ -28,13 +28,13 @@ from grc_gnuradio import wxgui as grc_wxgui
 from optparse import OptionParser
 import lora
 import osmosdr
+import pmt  # <-- IMPORT PMT
 import wx
 
 
 class single(grc_wxgui.top_block_gui):
 
     def __init__(self):
-        # Call the parent constructor FIRST to initialize the window.
         grc_wxgui.top_block_gui.__init__(self, title="Hopping")
 
         ##################################################
@@ -87,11 +87,9 @@ class single(grc_wxgui.top_block_gui):
         self.lora_lora_receiver_0 = lora.lora_receiver(samp_rate, capture_freq, ([self.target_freq[self.freq_index]]), bw, sf, False, 4, True, False, downlink, decimation, False, False)
         
         ##################################################
-        # Timer for frequency hopping (CORRECTED)
+        # Timer for frequency hopping
         ##################################################
-        # The timer must be owned by an event handler, which is the window frame.
         self.hop_timer = wx.Timer(self.GetWin(), wx.ID_ANY)
-        # The event must also be bound to the window frame.
         self.GetWin().Bind(wx.EVT_TIMER, self._on_hop_timer, self.hop_timer)
 
         ##################################################
@@ -102,23 +100,34 @@ class single(grc_wxgui.top_block_gui):
         self.connect((self.uhd_usrp_source_0, 0), (self.wxgui_fftsink2_1, 0))
 
     def Start(self, *args, **kwargs):
-        # First, call the original Start method from the parent class.
         super(single, self).Start(*args, **kwargs)
-        # Now that the flowgraph is running, it's safe to start our timer.
         if hasattr(self, 'hop_interval') and self.hop_interval > 0:
             self.hop_timer.Start(self.hop_interval)
 
     def Stop(self, *args, **kwargs):
-        # It's good practice to stop the timer when the flowgraph stops.
         if hasattr(self, 'hop_timer'):
             self.hop_timer.Stop()
         super(single, self).Stop(*args, **kwargs)
 
     def _on_hop_timer(self, event):
+        # This is the corrected frequency hopping logic
         self.freq_index = (self.freq_index + 1) % len(self.target_freq)
         new_freq = self.target_freq[self.freq_index]
-        self.lora_lora_receiver_0.set_frequencies([new_freq])
+
+        # Instead of a direct call, we post a message to the block.
+        # The message is a dictionary (PMT) with the key "freq"
+        # and the new frequency as the value.
+        # The message is sent to the 'command' input port of the LoRa receiver.
+        # NOTE: The port name might be 'cmd'. If 'command' doesn't work, try 'cmd'.
+        msg = pmt.to_pmt({pmt.intern("freq"): pmt.from_double(new_freq)})
+        self.lora_lora_receiver_0.message_port_pub(pmt.intern("command"), msg)
+        
+        # We also need to tell the USRP source to retune its center frequency.
+        # This is a different kind of message, a specific UHD command tag.
+        self.uhd_usrp_source_0.set_center_freq(new_freq, 0)
+
         print("Hopping to frequency: %.2f MHz" % (new_freq / 1e6))
+
 
     # --- Getter/Setter Methods ---
     def get_sf(self):
@@ -154,7 +163,10 @@ class single(grc_wxgui.top_block_gui):
     def set_target_freq(self, target_freq):
         self.target_freq = target_freq
         self.freq_index = 0
-        self.lora_lora_receiver_0.set_frequencies([self.target_freq[self.freq_index]])
+        # On initial setup, still use the direct call if available, or update variable
+        # For hopping, we now use messages.
+        self.set_center_freq(self.target_freq[self.freq_index])
+
 
     def get_symbols_per_sec(self):
         return self.symbols_per_sec
