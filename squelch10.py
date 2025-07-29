@@ -58,7 +58,7 @@ class squelch10(grc_wxgui.top_block_gui):
         self.downlink = downlink = False
         self.delay = delay = int(150e3)
         self.decimation = decimation = 1
-        self.capture_freq = capture_freq = 910.3e6
+        self.capture_freq = capture_freq = 903.1e6
         self.bitrate = bitrate = sf * (1 / (2**sf / float(bw)))
         self.atten = atten = 60
 
