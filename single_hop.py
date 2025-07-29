@@ -39,10 +39,13 @@ class HoppingReceiver(grc_wxgui.top_block_gui):
     predefined list of frequencies at a regular interval.
     """
     def __init__(self):
+        # STEP 1: Initialize the parent class FIRST. This is mandatory for WX.
+        # This call creates the GUI window and makes `self` a valid wx.EvtHandler.
+        grc_wxgui.top_block_gui.__init__(self, title="Final Working LoRa Hopper")
 
         #####################################################################
-        # STEP 1: DEFINE VARIABLES AND TIMER *BEFORE* PARENT INITIALIZATION
-        # This is critical to prevent the __init__ race condition.
+        # STEP 2: Now that `self` is a valid WX object, define all variables
+        # and create all blocks, including the timer.
         #####################################################################
 
         # --- Hopping Configuration ---
@@ -53,57 +56,30 @@ class HoppingReceiver(grc_wxgui.top_block_gui):
         self.hop_interval_ms = 1000  # Time to wait on each frequency
         self.current_freq_index = 0
 
-        # --- Create the Hopping Timer Object ---
-        # The parent __init__ will call Start, which needs this timer to exist.
-        self.hop_timer = wx.Timer(self, wx.ID_ANY)
-        
-
-        #####################################################################
-        # STEP 2: INITIALIZE THE PARENT WX GUI CLASS
-        # Now that the timer exists, this call is safe.
-        #####################################################################
-        grc_wxgui.top_block_gui.__init__(self, title="Final Working LoRa Hopper")
-        # From this point on, the GUI is ready.
-        
-        # Bind the timer event *after* the parent is initialized
-        self.Bind(wx.EVT_TIMER, self._handle_hop_timer, self.hop_timer)
-
-
-        #####################################################################
-        # STEP 3: DEFINE REMAINING VARIABLES AND CREATE BLOCKS
-        #####################################################################
-
-        # --- Basic LoRa Parameters ---
+        # --- Basic LoRa and SDR Parameters ---
         self.sf = sf = 7
         self.bw = bw = 125000
-
-        # --- SDR and Sampling Parameters ---
         self.samp_rate = samp_rate = 1e6
         self.capture_freq = capture_freq = 903e6
         self.sdr_gain = sdr_gain = 30
-
+        
         # --- Resampling Parameters ---
         interp = 5
         decim = 8
         self.resampled_rate = samp_rate * interp / decim
 
-        # --- Create Blocks ---
-        self.uhd_source = uhd.usrp_source(
-            device_addr="serial=3134B8C",
-            stream_args=uhd.stream_args(cpu_format="fc32", channels=range(1)),
-        )
+        # --- Block Creation ---
+        self.uhd_source = uhd.usrp_source("serial=3134B8C", uhd.stream_args(cpu_format="fc32", channels=range(1)))
         self.resampler = filter.rational_resampler_ccc(interp, decim, None, None)
-        self.lora_receiver = lora.lora_receiver(
-            self.resampled_rate, capture_freq, [self.target_freq_list[0]],
-            bw, sf, crc=True, implicit=False
-        )
-        self.fft_sink = fftsink2.fft_sink_c(
-            self.GetWin(), baseband_freq=capture_freq, sample_rate=samp_rate,
-            fft_size=1024, title='FFT Plot'
-        )
+        self.lora_receiver = lora.lora_receiver(self.resampled_rate, capture_freq, [self.target_freq_list[0]], bw, sf, crc=True, implicit=False)
+        self.fft_sink = fftsink2.fft_sink_c(self.GetWin(), baseband_freq=capture_freq, sample_rate=samp_rate, fft_size=1024, title='FFT Plot')
         self.Add(self.fft_sink.win)
         self.socket_sink = lora.message_socket_sink('127.0.0.1', 40868, 0)
         
+        # --- Timer Creation and Binding ---
+        self.hop_timer = wx.Timer(self, wx.ID_ANY)
+        self.Bind(wx.EVT_TIMER, self._handle_hop_timer, self.hop_timer)
+
         ##################################################
         # Set Block Parameters
         ##################################################
@@ -119,10 +95,18 @@ class HoppingReceiver(grc_wxgui.top_block_gui):
         self.connect((self.uhd_source, 0), (self.fft_sink, 0))
         self.msg_connect((self.lora_receiver, 'frames'), (self.socket_sink, 'in'))
 
-    def Start(self, *args, **kwargs):
-        """Overrides the default Start method to also start our hopping timer."""
-        super(HoppingReceiver, self).Start(*args, **kwargs)
-        if self.hop_interval_ms > 0:
+    def Start(self, top_level_start=True):
+        """
+        Overrides the default Start method. This method is called twice:
+        1. With top_level_start=False by the parent's __init__.
+        2. With top_level_start=True by our main() function.
+        """
+        # Always call the parent's Start method.
+        super(HoppingReceiver, self).Start(top_level_start)
+        
+        # We ONLY start our custom timer if this is the "real" start from main().
+        # This avoids the race condition that caused all the previous errors.
+        if top_level_start and self.hop_interval_ms > 0:
             print("INFO: Starting frequency hopping timer with interval: %dms" % self.hop_interval_ms)
             self.hop_timer.Start(self.hop_interval_ms)
 
