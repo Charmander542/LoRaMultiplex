@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Hopping (Destroy/Recreate Hack)
+# Title: Hopping (Corrected Destroy/Recreate Hack)
 # Generated: Thu Jul 24 17:26:10 2025
 ##################################################
 
@@ -57,27 +57,16 @@ class single(grc_wxgui.top_block_gui):
         # Blocks
         ##################################################
         self.wxgui_fftsink2_1 = fftsink2.fft_sink_c(
-            self.GetWin(),
-            baseband_freq=capture_freq,
-            y_per_div=10,
-            y_divs=10,
-            ref_level=0,
-            ref_scale=2.0,
-            sample_rate=samp_rate,
-            fft_size=1024,
-            fft_rate=15,
-            average=False,
-            avg_alpha=None,
-            title='FFT Plot',
-            peak_hold=False,
+            self.GetWin(), baseband_freq=capture_freq, sample_rate=samp_rate,
+            y_per_div=10, y_divs=10, ref_level=0, ref_scale=2.0,
+            fft_size=1024, fft_rate=15, average=False, avg_alpha=None,
+            title='FFT Plot', peak_hold=False
         )
         self.Add(self.wxgui_fftsink2_1.win)
+
         self.uhd_usrp_source_0 = uhd.usrp_source(
             ",".join(("serial=3134B8C", "")),
-            uhd.stream_args(
-                cpu_format="fc32",
-                channels=range(1),
-            ),
+            uhd.stream_args(cpu_format="fc32", channels=range(1))
         )
         self.uhd_usrp_source_0.set_samp_rate(samp_rate)
         self.uhd_usrp_source_0.set_center_freq(capture_freq, 0)
@@ -86,7 +75,10 @@ class single(grc_wxgui.top_block_gui):
         self.lora_message_socket_sink_0 = lora.message_socket_sink('127.0.0.1', 40868, 0)
         
         # Initial creation of the LoRa receiver block
-        self.lora_lora_receiver_0 = lora.lora_receiver(samp_rate, capture_freq, ([self.target_freq[self.freq_index]]), bw, sf, False, 4, True, False, downlink, decimation, False, False)
+        self.lora_lora_receiver_0 = lora.lora_receiver(
+            samp_rate, capture_freq, ([self.target_freq[self.freq_index]]), bw, sf, 
+            False, 4, True, False, downlink, decimation, False, False
+        )
         
         ##################################################
         # Timer for frequency hopping
@@ -97,25 +89,26 @@ class single(grc_wxgui.top_block_gui):
         ##################################################
         # Connections
         ##################################################
-        self.connect_all()
+        # Connect the permanent blocks first
+        self.connect((self.uhd_usrp_source_0, 0), (self.wxgui_fftsink2_1, 0))
+        # Now connect the replaceable block
+        self.connect_lora_receiver()
 
-    def connect_all(self):
-        """Helper function to establish all connections."""
+    def connect_lora_receiver(self):
+        """Helper to connect only the LoRa receiver."""
         self.msg_connect((self.lora_lora_receiver_0, 'frames'), (self.lora_message_socket_sink_0, 'in'))
         self.connect((self.uhd_usrp_source_0, 0), (self.lora_lora_receiver_0, 0))
-        self.connect((self.uhd_usrp_source_0, 0), (self.wxgui_fftsink2_1, 0))
 
-    def disconnect_all(self):
-        """Helper function to tear down all connections."""
+    def disconnect_lora_receiver(self):
+        """Helper to disconnect only the LoRa receiver."""
         self.msg_disconnect((self.lora_lora_receiver_0, 'frames'), (self.lora_message_socket_sink_0, 'in'))
         self.disconnect((self.uhd_usrp_source_0, 0), (self.lora_lora_receiver_0, 0))
-        self.disconnect((self.uhd_usrp_source_0, 0), (self.wxgui_fftsink2_1, 0))
 
     def perform_hop(self, event):
         """The main hopping logic: stop, rebuild, and restart."""
         print("--- Initiating hop ---")
         
-        # 1. Stop the flowgraph scheduler and wait for it to halt
+        # 1. Stop the flowgraph scheduler
         self.stop()
         self.wait()
         
@@ -124,21 +117,22 @@ class single(grc_wxgui.top_block_gui):
         new_freq = self.target_freq[self.freq_index]
         print("Rebuilding for frequency: %.2f MHz" % (new_freq / 1e6))
 
-        # 3. Disconnect the old block from all other blocks
-        self.disconnect_all()
+        # 3. Disconnect ONLY the LoRa receiver block
+        self.disconnect_lora_receiver()
         
-        # 4. Delete the old block object from memory
+        # 4. Delete the old block object
         del self.lora_lora_receiver_0
         
-        # 5. Create a new block instance, passing the new frequency to its constructor
+        # 5. Create a new block instance with the new frequency
         self.lora_lora_receiver_0 = lora.lora_receiver(
-            self.samp_rate, self.capture_freq, ([new_freq]), self.bw, self.sf, False, 4, True, False, self.downlink, self.decimation, False, False
+            self.samp_rate, self.capture_freq, ([new_freq]), self.bw, self.sf, 
+            False, 4, True, False, self.downlink, self.decimation, False, False
         )
         
-        # 6. Re-establish all connections with the new block
-        self.connect_all()
+        # 6. Reconnect ONLY the new LoRa receiver block
+        self.connect_lora_receiver()
         
-        # 7. Start the flowgraph scheduler again
+        # 7. Start the flowgraph again
         self.start()
         print("--- Hop complete. Flowgraph restarted. ---")
 
