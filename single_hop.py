@@ -86,11 +86,6 @@ class single(grc_wxgui.top_block_gui):
         self.uhd_usrp_source_0.set_center_freq(capture_freq, 0)
         self.uhd_usrp_source_0.set_gain(20, 0)
         
-        # REMOVED: This block was the source of the crash. It was defined
-        # but never connected, and it used a module name 'filter' that was
-        # not imported, causing the __init__ method to fail.
-        # self.rational_resampler_xxx_0 = filter.rational_resampler_ccc(...)
-
         self.lora_message_socket_sink_0 = lora.message_socket_sink('127.0.0.1', 40868, 0)
 
         self.lora_lora_receiver_0 = lora.lora_receiver(samp_rate, capture_freq, ([self.target_freq[self.freq_index]]), bw, sf, False, 4, True, False, downlink, decimation, False, False)
@@ -180,10 +175,9 @@ class single(grc_wxgui.top_block_gui):
         self.decimation = decimation
 
     def get_capture_freq(self):
-        return self.capture_freq
+        return self.capture__freq
 
     def set_capture_freq(self, capture_freq):
-        # FIX: Corrected typo in argument name `capture__freq`
         self.capture_freq = capture_freq
         self.wxgui_fftsink2_1.set_baseband_freq(self.capture_freq)
         self.uhd_usrp_source_0.set_center_freq(self.capture_freq, 0)
@@ -196,8 +190,6 @@ class single(grc_wxgui.top_block_gui):
 
 
 def main(top_block_cls=single, options=None):
-    # ADDED: A try/except block for better error reporting.
-    # This will catch the crash and print the exact error message.
     try:
         tb = top_block_cls()
         tb.Start(True)
