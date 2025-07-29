@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Hopping (Corrected Destroy/Recreate Hack)
+# Title: Hopping (Corrected with Selector)
 # Generated: Thu Jul 24 17:26:10 2025
 ##################################################
 
@@ -16,6 +16,7 @@ if __name__ == '__main__':
         except:
             print "Warning: failed to XInitThreads()"
 
+from gnuradio import blocks
 from gnuradio import eng_notation
 from gnuradio import gr
 from gnuradio import wxgui
@@ -44,24 +45,16 @@ class single(grc_wxgui.top_block_gui):
         self.samp_rate = samp_rate = 1e6
         self.bw = bw = 125000
         self.target_freq = target_freq = [902.3e6, 902.5e6, 902.7e6, 902.9e6, 903.1e6, 903.3e6, 903.5e6, 903.7e6, 903.9e6, 904.1e6]
-        self.hop_interval = hop_interval = 2000 # Increased interval to allow for restart
+        self.hop_interval = hop_interval = 1000
         self.freq_index = freq_index = 0
         self.capture_freq = capture_freq = 903e6
-        self.symbols_per_sec = symbols_per_sec = float(bw) / (2**sf)
-        self.firdes_tap = firdes_tap = firdes.low_pass(1, samp_rate, bw, 10000, firdes.WIN_HAMMING, 6.67)
         self.downlink = downlink = False
         self.decimation = decimation = 1
-        self.bitrate = bitrate = sf * (1 / (2**sf / float(bw)))
 
         ##################################################
         # Blocks
         ##################################################
-        self.wxgui_fftsink2_1 = fftsink2.fft_sink_c(
-            self.GetWin(), baseband_freq=capture_freq, sample_rate=samp_rate,
-            y_per_div=10, y_divs=10, ref_level=0, ref_scale=2.0,
-            fft_size=1024, fft_rate=15, average=False, avg_alpha=None,
-            title='FFT Plot', peak_hold=False
-        )
+        self.wxgui_fftsink2_1 = fftsink2.fft_sink_c(self.GetWin(), baseband_freq=capture_freq, sample_rate=samp_rate)
         self.Add(self.wxgui_fftsink2_1.win)
 
         self.uhd_usrp_source_0 = uhd.usrp_source(
@@ -73,13 +66,24 @@ class single(grc_wxgui.top_block_gui):
         self.uhd_usrp_source_0.set_gain(20, 0)
         
         self.lora_message_socket_sink_0 = lora.message_socket_sink('127.0.0.1', 40868, 0)
-        
-        # Initial creation of the LoRa receiver block
-        self.lora_lora_receiver_0 = lora.lora_receiver(
-            samp_rate, capture_freq, ([self.target_freq[self.freq_index]]), bw, sf, 
-            False, 4, True, False, downlink, decimation, False, False
+
+        # Create the Selector block
+        num_channels = len(self.target_freq)
+        self.blocks_selector_0 = blocks.selector(
+            item_size=gr.sizeof_gr_complex,
+            num_inputs=1,
+            num_outputs=num_channels
         )
-        
+
+        # Create a list of LoRa receivers, one for each frequency
+        self.lora_receivers = []
+        for i in range(num_channels):
+            rx = lora.lora_receiver(
+                samp_rate, self.target_freq[i], ([self.target_freq[i]]), bw, sf, 
+                False, 4, True, False, downlink, decimation, False, False
+            )
+            self.lora_receivers.append(rx)
+
         ##################################################
         # Timer for frequency hopping
         ##################################################
@@ -89,74 +93,47 @@ class single(grc_wxgui.top_block_gui):
         ##################################################
         # Connections
         ##################################################
-        # Connect the permanent blocks first
+        # Connect USRP to the single input of the Selector
+        self.connect((self.uhd_usrp_source_0, 0), (self.blocks_selector_0, 0))
+        
+        # Connect USRP to the FFT sink (as before)
         self.connect((self.uhd_usrp_source_0, 0), (self.wxgui_fftsink2_1, 0))
-        # Now connect the replaceable block
-        self.connect_lora_receiver()
 
-    def connect_lora_receiver(self):
-        """Helper to connect only the LoRa receiver."""
-        self.msg_connect((self.lora_lora_receiver_0, 'frames'), (self.lora_message_socket_sink_0, 'in'))
-        self.connect((self.uhd_usrp_source_0, 0), (self.lora_lora_receiver_0, 0))
-
-    def disconnect_lora_receiver(self):
-        """Helper to disconnect only the LoRa receiver."""
-        self.msg_disconnect((self.lora_lora_receiver_0, 'frames'), (self.lora_message_socket_sink_0, 'in'))
-        self.disconnect((self.uhd_usrp_source_0, 0), (self.lora_lora_receiver_0, 0))
+        # Connect each output of the Selector to a different LoRa receiver
+        for i in range(num_channels):
+            self.connect((self.blocks_selector_0, i), (self.lora_receivers[i], 0))
+            self.msg_connect((self.lora_receivers[i], 'frames'), (self.lora_message_socket_sink_0, 'in'))
 
     def perform_hop(self, event):
-        """The main hopping logic: stop, rebuild, and restart."""
-        print("--- Initiating hop ---")
-        
-        # 1. Stop the flowgraph scheduler
-        self.stop()
-        self.wait()
-        
-        # 2. Calculate the next frequency
+        """The main hopping logic using the Selector."""
         self.freq_index = (self.freq_index + 1) % len(self.target_freq)
-        new_freq = self.target_freq[self.freq_index]
-        print("Rebuilding for frequency: %.2f MHz" % (new_freq / 1e6))
-
-        # 3. Disconnect ONLY the LoRa receiver block
-        self.disconnect_lora_receiver()
         
-        # 4. Delete the old block object
-        del self.lora_lora_receiver_0
+        # Simply tell the selector to change its active output port.
+        # This is instantaneous and thread-safe.
+        self.blocks_selector_0.set_output_index(self.freq_index)
         
-        # 5. Create a new block instance with the new frequency
-        self.lora_lora_receiver_0 = lora.lora_receiver(
-            self.samp_rate, self.capture_freq, ([new_freq]), self.bw, self.sf, 
-            False, 4, True, False, self.downlink, self.decimation, False, False
-        )
-        
-        # 6. Reconnect ONLY the new LoRa receiver block
-        self.connect_lora_receiver()
-        
-        # 7. Start the flowgraph again
-        self.start()
-        print("--- Hop complete. Flowgraph restarted. ---")
+        print("Hopping to channel %d: %.2f MHz" % (self.freq_index, self.target_freq[self.freq_index] / 1e6))
 
     def Start(self, *args, **kwargs):
         super(single, self).Start(*args, **kwargs)
         if hasattr(self, 'hop_interval') and self.hop_interval > 0:
+            # Set the initial channel before starting the timer
+            self.blocks_selector_0.set_output_index(self.freq_index)
+            print("Starting on channel %d: %.2f MHz" % (self.freq_index, self.target_freq[self.freq_index] / 1e6))
+            # Start the timer
             self.hop_timer.Start(self.hop_interval)
 
     def Stop(self, *args, **kwargs):
         if hasattr(self, 'hop_timer'):
             self.hop_timer.Stop()
         super(single, self).Stop(*args, **kwargs)
-        
-    # --- Getter/Setter Methods ---
+
+    # Other getters/setters are now less relevant for hopping but kept for completeness
     def get_sf(self): return self.sf
-    def set_sf(self, sf): self.sf = sf
     def get_samp_rate(self): return self.samp_rate
-    def set_samp_rate(self, samp_rate): self.samp_rate = samp_rate
     def get_bw(self): return self.bw
-    def set_bw(self, bw): self.bw = bw
     def get_target_freq(self): return self.target_freq
-    def set_target_freq(self, target_freq): self.target_freq = target_freq
     def get_capture_freq(self): return self.capture_freq
-    def set_capture_freq(self, capture_freq): self.capture_freq = capture_freq
 
 def main(top_block_cls=single, options=None):
     try:
