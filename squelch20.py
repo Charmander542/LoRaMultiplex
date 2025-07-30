@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Squelch20
-# Generated: Mon Jul 28 18:30:40 2025
+# Generated: Wed Jul 30 15:08:59 2025
 ##################################################
 
 if __name__ == '__main__':
@@ -44,7 +44,7 @@ class squelch20(grc_wxgui.top_block_gui):
         # Variables
         ##################################################
         self.channels = channels = 20
-        self.ch_rate = ch_rate = 400e3
+        self.ch_rate = ch_rate = 200e3
         self.sf = sf = 11
         self.samp_rate = samp_rate = ch_rate*channels
         self.ch_tb = ch_tb = 20e3
@@ -93,7 +93,7 @@ class squelch20(grc_wxgui.top_block_gui):
         self.uhd_usrp_source_0.set_gain(20, 0)
         self.rational_resampler_xxx_0 = filter.rational_resampler_ccc(
                 interpolation=5,
-                decimation=8,
+                decimation=4,
                 taps=(firdes.low_pass(1, 400000, 62500, 20000, window.WIN_HAMMING)),
                 fractional_bw=None,
         )
