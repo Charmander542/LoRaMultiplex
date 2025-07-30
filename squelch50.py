@@ -63,7 +63,7 @@ class squelch50(grc_wxgui.top_block_gui):
         # Blocks
         ##################################################
         self.uhd_usrp_source_0 = uhd.usrp_source(
-        	",".join(("serial=3134B8C", "")),
+        	",".join(("serial=3134BCA", "")),
         	uhd.stream_args(
         		cpu_format="fc32",
         		channels=range(1),
