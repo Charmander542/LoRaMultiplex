@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Squelch10
-# Generated: Wed Jul 30 15:08:43 2025
+# Generated: Wed Jul 30 18:23:23 2025
 ##################################################
 
 if __name__ == '__main__':
@@ -65,6 +65,22 @@ class squelch10(grc_wxgui.top_block_gui):
         ##################################################
         # Blocks
         ##################################################
+        self.wxgui_fftsink2_1_1 = fftsink2.fft_sink_c(
+        	self.GetWin(),
+        	baseband_freq=target_freq,
+        	y_per_div=10,
+        	y_divs=10,
+        	ref_level=0,
+        	ref_scale=2.0,
+        	sample_rate=samp_rate,
+        	fft_size=1024,
+        	fft_rate=15,
+        	average=False,
+        	avg_alpha=None,
+        	title='FFT Plot',
+        	peak_hold=False,
+        )
+        self.Add(self.wxgui_fftsink2_1_1.win)
         self.wxgui_fftsink2_1_0 = fftsink2.fft_sink_c(
         	self.GetWin(),
         	baseband_freq=910.5e6,
@@ -98,7 +114,7 @@ class squelch10(grc_wxgui.top_block_gui):
         )
         self.Add(self.wxgui_fftsink2_1.win)
         self.uhd_usrp_source_0 = uhd.usrp_source(
-        	",".join(("serial=3134BCA", "")),
+        	",".join(("serial=3134B8C", "")),
         	uhd.stream_args(
         		cpu_format="fc32",
         		channels=range(1),
@@ -162,6 +178,7 @@ class squelch10(grc_wxgui.top_block_gui):
         self.connect((self.rational_resampler_xxx_0, 0), (self.lora_lora_receiver_0, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.pfb_channelizer_ccf_0, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.wxgui_fftsink2_1, 0))
+        self.connect((self.uhd_usrp_source_0, 0), (self.wxgui_fftsink2_1_1, 0))
 
     def get_channels(self):
         return self.channels
@@ -193,6 +210,7 @@ class squelch10(grc_wxgui.top_block_gui):
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
         self.set_taps(firdes.low_pass(1, self.samp_rate, self.ch_bw, self.ch_tb, firdes.WIN_HAMMING))
+        self.wxgui_fftsink2_1_1.set_sample_rate(self.samp_rate)
         self.wxgui_fftsink2_1.set_sample_rate(self.samp_rate)
         self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
         self.set_firdes_tap(firdes.low_pass(1, self.samp_rate, self.bw, 10000, firdes.WIN_HAMMING, 6.67))
@@ -241,6 +259,7 @@ class squelch10(grc_wxgui.top_block_gui):
 
     def set_target_freq(self, target_freq):
         self.target_freq = target_freq
+        self.wxgui_fftsink2_1_1.set_baseband_freq(self.target_freq)
         self.wxgui_fftsink2_1.set_baseband_freq(self.target_freq)
 
     def get_taps(self):
