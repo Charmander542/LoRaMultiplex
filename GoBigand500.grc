@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>squelch20</value>
+      <value>squelch56</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -105,7 +105,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>60</value>
+      <value>30</value>
     </param>
   </block>
   <block>
@@ -294,7 +294,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>20</value>
+      <value>50</value>
     </param>
   </block>
   <block>
@@ -827,7 +827,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -945,7 +945,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1004,7 +1004,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1181,7 +1181,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1299,7 +1299,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1358,7 +1358,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1594,7 +1594,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1712,7 +1712,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1771,7 +1771,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2007,7 +2007,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2125,7 +2125,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2184,7 +2184,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2361,7 +2361,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2479,7 +2479,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2538,7 +2538,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2715,7 +2715,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2833,7 +2833,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2892,7 +2892,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3010,7 +3010,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3128,7 +3128,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3187,7 +3187,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3305,7 +3305,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3423,7 +3423,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3482,7 +3482,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3600,7 +3600,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3718,7 +3718,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3777,7 +3777,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3840,7 +3840,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(824, 128)</value>
+      <value>(832, 128)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3895,7 +3895,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -4013,7 +4013,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -4072,7 +4072,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -4089,6 +4089,360 @@ for better performance, but worse accuracy.</value>
     <param>
       <key>id</key>
       <value>analog_pwr_squelch_xx_0_2_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>ramp</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>threshold</key>
+      <value>thresh</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+  </block>
+  <block>
+    <key>analog_pwr_squelch_xx</key>
+    <param>
+      <key>alpha</key>
+      <value>1e-4</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1664, 1040)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>gate</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>analog_pwr_squelch_xx_0_2_1</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>ramp</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>threshold</key>
+      <value>thresh</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+  </block>
+  <block>
+    <key>analog_pwr_squelch_xx</key>
+    <param>
+      <key>alpha</key>
+      <value>1e-4</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1664, 1168)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>gate</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>analog_pwr_squelch_xx_0_2_1_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>ramp</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>threshold</key>
+      <value>thresh</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+  </block>
+  <block>
+    <key>analog_pwr_squelch_xx</key>
+    <param>
+      <key>alpha</key>
+      <value>1e-4</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1664, 1296)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>gate</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>analog_pwr_squelch_xx_0_2_1_1</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>ramp</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>threshold</key>
+      <value>thresh</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+  </block>
+  <block>
+    <key>analog_pwr_squelch_xx</key>
+    <param>
+      <key>alpha</key>
+      <value>1e-4</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1664, 1424)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>gate</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>analog_pwr_squelch_xx_0_2_1_2</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>ramp</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>threshold</key>
+      <value>thresh</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+  </block>
+  <block>
+    <key>analog_pwr_squelch_xx</key>
+    <param>
+      <key>alpha</key>
+      <value>1e-4</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1664, 1552)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>gate</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>analog_pwr_squelch_xx_0_2_1_3</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>ramp</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>threshold</key>
+      <value>thresh</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+  </block>
+  <block>
+    <key>analog_pwr_squelch_xx</key>
+    <param>
+      <key>alpha</key>
+      <value>1e-4</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1664, 1680)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>gate</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>analog_pwr_squelch_xx_0_2_1_4</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -4156,6 +4510,57 @@ for better performance, but worse accuracy.</value>
     <param>
       <key>num_inputs</key>
       <value>channels</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_add_xx</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(2000, 1312)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_add_xx_1</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>num_inputs</key>
+      <value>6</value>
     </param>
     <param>
       <key>vlen</key>
@@ -4709,6 +5114,97 @@ for better performance, but worse accuracy.</value>
     </param>
   </block>
   <block>
+    <key>lora_lora_receiver</key>
+    <param>
+      <key>bandwidth</key>
+      <value>int(500e3)</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>crc</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>center_freq</key>
+      <value>capture_freq</value>
+    </param>
+    <param>
+      <key>channel_list</key>
+      <value>[target_freq]</value>
+    </param>
+    <param>
+      <key>cr</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>conj</key>
+      <value>downlink</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>decimation</key>
+      <value>decimation</value>
+    </param>
+    <param>
+      <key>disable_channelization</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>disable_drift_correction</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(2416, 1168)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>lora_lora_receiver_0_1</value>
+    </param>
+    <param>
+      <key>implicit</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>reduced_rate</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>1e6</value>
+    </param>
+    <param>
+      <key>sf</key>
+      <value>7</value>
+    </param>
+  </block>
+  <block>
     <key>pfb_channelizer_ccf</key>
     <param>
       <key>atten</key>
@@ -4776,6 +5272,408 @@ for better performance, but worse accuracy.</value>
     </param>
   </block>
   <block>
+    <key>pfb_synthesizer_ccf</key>
+    <param>
+      <key>twox</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>bus_conns</key>
+      <value>[[0,],]</value>
+    </param>
+    <param>
+      <key>ch_map</key>
+      <value>[]</value>
+    </param>
+    <param>
+      <key>numchans</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>connections</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1416, 1024)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pfb_synthesizer_ccf_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>samp_delay</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>taps</key>
+      <value></value>
+    </param>
+  </block>
+  <block>
+    <key>pfb_synthesizer_ccf</key>
+    <param>
+      <key>twox</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>bus_conns</key>
+      <value>[[0,],]</value>
+    </param>
+    <param>
+      <key>ch_map</key>
+      <value>[]</value>
+    </param>
+    <param>
+      <key>numchans</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>connections</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1416, 1152)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pfb_synthesizer_ccf_0_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>samp_delay</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>taps</key>
+      <value></value>
+    </param>
+  </block>
+  <block>
+    <key>pfb_synthesizer_ccf</key>
+    <param>
+      <key>twox</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>bus_conns</key>
+      <value>[[0,],]</value>
+    </param>
+    <param>
+      <key>ch_map</key>
+      <value>[]</value>
+    </param>
+    <param>
+      <key>numchans</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>connections</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1416, 1408)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pfb_synthesizer_ccf_0_0_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>samp_delay</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>taps</key>
+      <value></value>
+    </param>
+  </block>
+  <block>
+    <key>pfb_synthesizer_ccf</key>
+    <param>
+      <key>twox</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>bus_conns</key>
+      <value>[[0,],]</value>
+    </param>
+    <param>
+      <key>ch_map</key>
+      <value>[]</value>
+    </param>
+    <param>
+      <key>numchans</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>connections</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1416, 1536)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pfb_synthesizer_ccf_0_0_1</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>samp_delay</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>taps</key>
+      <value></value>
+    </param>
+  </block>
+  <block>
+    <key>pfb_synthesizer_ccf</key>
+    <param>
+      <key>twox</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>bus_conns</key>
+      <value>[[0,],]</value>
+    </param>
+    <param>
+      <key>ch_map</key>
+      <value>[]</value>
+    </param>
+    <param>
+      <key>numchans</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>connections</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1416, 1280)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pfb_synthesizer_ccf_0_0_2</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>samp_delay</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>taps</key>
+      <value></value>
+    </param>
+  </block>
+  <block>
+    <key>pfb_synthesizer_ccf</key>
+    <param>
+      <key>twox</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>bus_conns</key>
+      <value>[[0,],]</value>
+    </param>
+    <param>
+      <key>ch_map</key>
+      <value>[]</value>
+    </param>
+    <param>
+      <key>numchans</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>connections</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1416, 1664)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pfb_synthesizer_ccf_0_0_3</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>samp_delay</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>taps</key>
+      <value></value>
+    </param>
+  </block>
+  <block>
     <key>rational_resampler_xxx</key>
     <param>
       <key>alias</key>
@@ -4827,7 +5725,66 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>taps</key>
-      <value>firdes.low_pass(1, 400000, 62500, 20000, window.WIN_HAMMING)</value>
+      <value>firdes.low_pass(1, 400000, 62500, 20000, firdes.WIN_HAMMING)</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>ccc</value>
+    </param>
+  </block>
+  <block>
+    <key>rational_resampler_xxx</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>decim</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>fbw</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(2088, 1360)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>rational_resampler_xxx_0_0</value>
+    </param>
+    <param>
+      <key>interp</key>
+      <value>5</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>taps</key>
+      <value>firdes.low_pass(1, 400000, 62500, 20000, firdes.WIN_HAMMING)</value>
     </param>
     <param>
       <key>type</key>
@@ -6006,7 +6963,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>dev_addr</key>
-      <value>"serial=3134BCA"</value>
+      <value>"serial=3134B8C"</value>
     </param>
     <param>
       <key>dev_args</key>
@@ -6201,7 +7158,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>fft_size</key>
@@ -6276,118 +7233,9 @@ for better performance, but worse accuracy.</value>
       <value>10</value>
     </param>
   </block>
-  <block>
-    <key>wxgui_fftsink2</key>
-    <param>
-      <key>avg_alpha</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>average</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>baseband_freq</key>
-      <value>910.5e6</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>fft_size</key>
-      <value>1024</value>
-    </param>
-    <param>
-      <key>freqvar</key>
-      <value>None</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1176, 120)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>grid_pos</key>
-      <value></value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>wxgui_fftsink2_1_0</value>
-    </param>
-    <param>
-      <key>notebook</key>
-      <value></value>
-    </param>
-    <param>
-      <key>peak_hold</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>ref_level</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>ref_scale</key>
-      <value>2.0</value>
-    </param>
-    <param>
-      <key>fft_rate</key>
-      <value>15</value>
-    </param>
-    <param>
-      <key>samp_rate</key>
-      <value>ch_rate</value>
-    </param>
-    <param>
-      <key>title</key>
-      <value>FFT Plot</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>complex</value>
-    </param>
-    <param>
-      <key>win_size</key>
-      <value></value>
-    </param>
-    <param>
-      <key>win</key>
-      <value>None</value>
-    </param>
-    <param>
-      <key>y_divs</key>
-      <value>10</value>
-    </param>
-    <param>
-      <key>y_per_div</key>
-      <value>10</value>
-    </param>
-  </block>
   <connection>
     <source_block_id>analog_pwr_squelch_xx_0</source_block_id>
     <sink_block_id>blocks_add_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>analog_pwr_squelch_xx_0</source_block_id>
-    <sink_block_id>wxgui_fftsink2_1_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -6410,6 +7258,24 @@ for better performance, but worse accuracy.</value>
     <sink_key>12</sink_key>
   </connection>
   <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_0_0_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>32</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_0_1</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>22</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_0_1_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>42</sink_key>
+  </connection>
+  <connection>
     <source_block_id>analog_pwr_squelch_xx_0_0_1</source_block_id>
     <sink_block_id>blocks_add_xx_0</sink_block_id>
     <source_key>0</source_key>
@@ -6420,6 +7286,24 @@ for better performance, but worse accuracy.</value>
     <sink_block_id>blocks_add_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>13</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_1_0_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>33</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_1_1</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>23</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_1_1_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>43</sink_key>
   </connection>
   <connection>
     <source_block_id>analog_pwr_squelch_xx_0_0_2</source_block_id>
@@ -6440,6 +7324,24 @@ for better performance, but worse accuracy.</value>
     <sink_key>15</sink_key>
   </connection>
   <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_2_0_0_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>35</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_2_0_1</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>25</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_2_0_1_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>45</sink_key>
+  </connection>
+  <connection>
     <source_block_id>analog_pwr_squelch_xx_0_0_2_1</source_block_id>
     <sink_block_id>blocks_add_xx_0</sink_block_id>
     <source_key>0</source_key>
@@ -6458,6 +7360,24 @@ for better performance, but worse accuracy.</value>
     <sink_key>17</sink_key>
   </connection>
   <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_2_1_0_0_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>37</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_2_1_0_1</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>27</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_2_1_0_1_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>47</sink_key>
+  </connection>
+  <connection>
     <source_block_id>analog_pwr_squelch_xx_0_0_2_1_1</source_block_id>
     <sink_block_id>blocks_add_xx_0</sink_block_id>
     <source_key>0</source_key>
@@ -6468,6 +7388,24 @@ for better performance, but worse accuracy.</value>
     <sink_block_id>blocks_add_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>18</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_2_1_1_0_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>38</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_2_1_1_1</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>28</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_2_1_1_1_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>48</sink_key>
   </connection>
   <connection>
     <source_block_id>analog_pwr_squelch_xx_0_0_2_1_2</source_block_id>
@@ -6482,10 +7420,46 @@ for better performance, but worse accuracy.</value>
     <sink_key>19</sink_key>
   </connection>
   <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_2_1_2_0_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>39</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_2_1_2_1</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>29</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_2_1_2_1_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>49</sink_key>
+  </connection>
+  <connection>
     <source_block_id>analog_pwr_squelch_xx_0_0_2_1_3</source_block_id>
     <sink_block_id>blocks_add_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>16</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_2_1_3_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>36</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_2_1_4</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>26</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_2_1_4_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>46</sink_key>
   </connection>
   <connection>
     <source_block_id>analog_pwr_squelch_xx_0_0_2_2</source_block_id>
@@ -6494,16 +7468,106 @@ for better performance, but worse accuracy.</value>
     <sink_key>14</sink_key>
   </connection>
   <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_2_2_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>34</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_2_3</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>24</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_2_3_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>44</sink_key>
+  </connection>
+  <connection>
     <source_block_id>analog_pwr_squelch_xx_0_0_3</source_block_id>
     <sink_block_id>blocks_add_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>11</sink_key>
   </connection>
   <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_3_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>31</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_4</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>21</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_0_4_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>41</sink_key>
+  </connection>
+  <connection>
     <source_block_id>analog_pwr_squelch_xx_0_1</source_block_id>
     <sink_block_id>blocks_add_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>10</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_1_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>30</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_2</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>20</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_2_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>40</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_2_1</source_block_id>
+    <sink_block_id>blocks_add_xx_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_2_1_0</source_block_id>
+    <sink_block_id>blocks_add_xx_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_2_1_1</source_block_id>
+    <sink_block_id>blocks_add_xx_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>2</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_2_1_2</source_block_id>
+    <sink_block_id>blocks_add_xx_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>3</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_2_1_3</source_block_id>
+    <sink_block_id>blocks_add_xx_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>4</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_pwr_squelch_xx_0_2_1_4</source_block_id>
+    <sink_block_id>blocks_add_xx_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>5</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_add_xx_0</source_block_id>
@@ -6514,6 +7578,12 @@ for better performance, but worse accuracy.</value>
   <connection>
     <source_block_id>blocks_add_xx_0</source_block_id>
     <sink_block_id>wxgui_fftsink2_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_add_xx_1</source_block_id>
+    <sink_block_id>rational_resampler_xxx_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -6537,9 +7607,21 @@ for better performance, but worse accuracy.</value>
   </connection>
   <connection>
     <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0_0</sink_block_id>
+    <source_key>10</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
     <sink_block_id>analog_pwr_squelch_xx_0_0_3</sink_block_id>
     <source_key>11</source_key>
     <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0_0</sink_block_id>
+    <source_key>11</source_key>
+    <sink_key>1</sink_key>
   </connection>
   <connection>
     <source_block_id>pfb_channelizer_ccf_0</source_block_id>
@@ -6549,9 +7631,21 @@ for better performance, but worse accuracy.</value>
   </connection>
   <connection>
     <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0_0</sink_block_id>
+    <source_key>12</source_key>
+    <sink_key>2</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
     <sink_block_id>analog_pwr_squelch_xx_0_0_1_0</sink_block_id>
     <source_key>13</source_key>
     <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0_0</sink_block_id>
+    <source_key>13</source_key>
+    <sink_key>3</sink_key>
   </connection>
   <connection>
     <source_block_id>pfb_channelizer_ccf_0</source_block_id>
@@ -6585,9 +7679,21 @@ for better performance, but worse accuracy.</value>
   </connection>
   <connection>
     <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0_0_2</sink_block_id>
+    <source_key>18</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
     <sink_block_id>analog_pwr_squelch_xx_0_0_2_1_2_0</sink_block_id>
     <source_key>19</source_key>
     <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0_0_2</sink_block_id>
+    <source_key>19</source_key>
+    <sink_key>1</sink_key>
   </connection>
   <connection>
     <source_block_id>pfb_channelizer_ccf_0</source_block_id>
@@ -6597,8 +7703,200 @@ for better performance, but worse accuracy.</value>
   </connection>
   <connection>
     <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0</sink_block_id>
+    <source_key>2</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_2</sink_block_id>
+    <source_key>20</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0_0_2</sink_block_id>
+    <source_key>20</source_key>
+    <sink_key>2</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_4</sink_block_id>
+    <source_key>21</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0_0_2</sink_block_id>
+    <source_key>21</source_key>
+    <sink_key>3</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_0_1</sink_block_id>
+    <source_key>22</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_1_1</sink_block_id>
+    <source_key>23</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_2_3</sink_block_id>
+    <source_key>24</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_2_0_1</sink_block_id>
+    <source_key>25</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_2_1_4</sink_block_id>
+    <source_key>26</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0_0_0</sink_block_id>
+    <source_key>26</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_2_1_0_1</sink_block_id>
+    <source_key>27</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0_0_0</sink_block_id>
+    <source_key>27</source_key>
+    <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_2_1_1_1</sink_block_id>
+    <source_key>28</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0_0_0</sink_block_id>
+    <source_key>28</source_key>
+    <sink_key>2</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_2_1_2_1</sink_block_id>
+    <source_key>29</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0_0_0</sink_block_id>
+    <source_key>29</source_key>
+    <sink_key>3</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
     <sink_block_id>analog_pwr_squelch_xx_0_0_1</sink_block_id>
     <source_key>3</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0</sink_block_id>
+    <source_key>3</source_key>
+    <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_1_0</sink_block_id>
+    <source_key>30</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_3_0</sink_block_id>
+    <source_key>31</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_0_0_0</sink_block_id>
+    <source_key>32</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_1_0_0</sink_block_id>
+    <source_key>33</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_2_2_0</sink_block_id>
+    <source_key>34</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0_0_1</sink_block_id>
+    <source_key>34</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_2_0_0_0</sink_block_id>
+    <source_key>35</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0_0_1</sink_block_id>
+    <source_key>35</source_key>
+    <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_2_1_3_0</sink_block_id>
+    <source_key>36</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0_0_1</sink_block_id>
+    <source_key>36</source_key>
+    <sink_key>2</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_2_1_0_0_0</sink_block_id>
+    <source_key>37</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0_0_1</sink_block_id>
+    <source_key>37</source_key>
+    <sink_key>3</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_2_1_1_0_0</sink_block_id>
+    <source_key>38</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_2_1_2_0_0</sink_block_id>
+    <source_key>39</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
@@ -6609,9 +7907,105 @@ for better performance, but worse accuracy.</value>
   </connection>
   <connection>
     <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0</sink_block_id>
+    <source_key>4</source_key>
+    <sink_key>2</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_2_0</sink_block_id>
+    <source_key>40</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_4_0</sink_block_id>
+    <source_key>41</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_0_1_0</sink_block_id>
+    <source_key>42</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0_0_3</sink_block_id>
+    <source_key>42</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_1_1_0</sink_block_id>
+    <source_key>43</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0_0_3</sink_block_id>
+    <source_key>43</source_key>
+    <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_2_3_0</sink_block_id>
+    <source_key>44</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0_0_3</sink_block_id>
+    <source_key>44</source_key>
+    <sink_key>2</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_2_0_1_0</sink_block_id>
+    <source_key>45</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0_0_3</sink_block_id>
+    <source_key>45</source_key>
+    <sink_key>3</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_2_1_4_0</sink_block_id>
+    <source_key>46</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_2_1_0_1_0</sink_block_id>
+    <source_key>47</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_2_1_1_1_0</sink_block_id>
+    <source_key>48</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_0_2_1_2_1_0</sink_block_id>
+    <source_key>49</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
     <sink_block_id>analog_pwr_squelch_xx_0_0_2_0</sink_block_id>
     <source_key>5</source_key>
     <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_channelizer_ccf_0</source_block_id>
+    <sink_block_id>pfb_synthesizer_ccf_0</sink_block_id>
+    <source_key>5</source_key>
+    <sink_key>3</sink_key>
   </connection>
   <connection>
     <source_block_id>pfb_channelizer_ccf_0</source_block_id>
@@ -6635,6 +8029,42 @@ for better performance, but worse accuracy.</value>
     <source_block_id>pfb_channelizer_ccf_0</source_block_id>
     <sink_block_id>analog_pwr_squelch_xx_0_0_2_1_2</sink_block_id>
     <source_key>9</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_synthesizer_ccf_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_2_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_synthesizer_ccf_0_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_2_1_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_synthesizer_ccf_0_0_0</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_2_1_2</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_synthesizer_ccf_0_0_1</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_2_1_3</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_synthesizer_ccf_0_0_2</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_2_1_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pfb_synthesizer_ccf_0_0_3</source_block_id>
+    <sink_block_id>analog_pwr_squelch_xx_0_2_1_4</sink_block_id>
+    <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
@@ -6670,6 +8100,12 @@ for better performance, but worse accuracy.</value>
   <connection>
     <source_block_id>rational_resampler_xxx_0</source_block_id>
     <sink_block_id>lora_lora_receiver_0_0_3</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>rational_resampler_xxx_0_0</source_block_id>
+    <sink_block_id>lora_lora_receiver_0_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
