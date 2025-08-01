@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>squelch10</value>
+      <value>squelch10colliison</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -186,7 +186,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>903.5e6</value>
+      <value>910.3e6</value>
     </param>
   </block>
   <block>
@@ -541,7 +541,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>value</key>
-      <value>903.5e6</value>
+      <value>910.3e6</value>
     </param>
   </block>
   <block>
@@ -4305,7 +4305,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -4396,7 +4396,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -4487,7 +4487,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -4578,7 +4578,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -4669,7 +4669,7 @@ for better performance, but worse accuracy.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
