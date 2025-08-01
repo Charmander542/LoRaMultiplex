@@ -114,7 +114,7 @@ class squelch10(grc_wxgui.top_block_gui):
         )
         self.Add(self.wxgui_fftsink2_1.win)
         self.uhd_usrp_source_0 = uhd.usrp_source(
-        	",".join(("serial=3134B8C", "")),
+        	",".join(("serial=3134BCA", "")),
         	uhd.stream_args(
         		cpu_format="fc32",
         		channels=range(1),
