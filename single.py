@@ -46,7 +46,7 @@ class single(grc_wxgui.top_block_gui):
         self.firdes_tap = firdes_tap = firdes.low_pass(1, samp_rate, bw, 10000, firdes.WIN_HAMMING, 6.67)
         self.downlink = downlink = False
         self.decimation = decimation = 1
-        self.capture_freq = capture_freq = 910e6
+        self.capture_freq = capture_freq = 910.3e6
         self.bitrate = bitrate = sf * (1 / (2**sf / float(bw)))
 
         ##################################################
