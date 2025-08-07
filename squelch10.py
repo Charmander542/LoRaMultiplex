@@ -60,7 +60,7 @@ class squelch10(grc_wxgui.top_block_gui):
         self.decimation = decimation = 1
         self.capture_freq = capture_freq = 903.3e6
         self.bitrate = bitrate = sf * (1 / (2**sf / float(bw)))
-        self.atten = atten = 30
+        self.atten = atten = 60
 
         ##################################################
         # Blocks
