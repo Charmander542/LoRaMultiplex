@@ -43,14 +43,14 @@ class squelch10(grc_wxgui.top_block_gui):
         ##################################################
         # Variables
         ##################################################
-        self.channels = channels = 10
-        self.ch_rate = ch_rate = 200e3
+        self.channels = channels = 6
+        self.ch_rate = ch_rate = 400e3
         self.sf = sf = 11
         self.samp_rate = samp_rate = ch_rate*channels
         self.ch_tb = ch_tb = 20e3
         self.ch_bw = ch_bw = ch_rate/2
         self.bw = bw = 125000
-        self.thresh = thresh = -90
+        self.thresh = thresh = -129
         self.target_freq = target_freq = 902.3e6
         self.taps = taps = firdes.low_pass(1, samp_rate, ch_bw, ch_tb, firdes.WIN_HAMMING)
         self.symbols_per_sec = symbols_per_sec = float(bw) / (2**sf)
@@ -83,7 +83,7 @@ class squelch10(grc_wxgui.top_block_gui):
         self.Add(self.wxgui_fftsink2_1_1.win)
         self.wxgui_fftsink2_1_0 = fftsink2.fft_sink_c(
         	self.GetWin(),
-        	baseband_freq=902.5e6,
+        	baseband_freq=902.3e6,
         	y_per_div=10,
         	y_divs=10,
         	ref_level=0,
