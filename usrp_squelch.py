@@ -83,7 +83,7 @@ class squelch10(grc_wxgui.top_block_gui):
         self.Add(self.wxgui_fftsink2_1_1.win)
         self.wxgui_fftsink2_1_0 = fftsink2.fft_sink_c(
         	self.GetWin(),
-        	baseband_freq=910.5e6,
+        	baseband_freq=902.5e6,
         	y_per_div=10,
         	y_divs=10,
         	ref_level=0,
