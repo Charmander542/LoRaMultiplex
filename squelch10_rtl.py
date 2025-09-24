@@ -125,7 +125,6 @@ class rtl_squelch(grc_wxgui.top_block_gui):
         ##################################################
         self.connect((self.analog_pwr_squelch_xx_0, 0), (self.blocks_add_xx_0, 0))
         self.connect((self.analog_pwr_squelch_xx_0_0, 0), (self.blocks_add_xx_0, 1))
-        self.connect((self.analog_pwr_squelch_xx_0_0, 0), (self.wxgui_fftsink2_1_0, 0))
         self.connect((self.analog_pwr_squelch_xx_0_0_0, 0), (self.blocks_add_xx_0, 2))
         self.connect((self.analog_pwr_squelch_xx_0_0_1, 0), (self.blocks_add_xx_0, 3))
         self.connect((self.analog_pwr_squelch_xx_0_0_2, 0), (self.blocks_add_xx_0, 4))
