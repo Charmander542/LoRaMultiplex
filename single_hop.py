@@ -42,7 +42,7 @@ class single(grc_wxgui.top_block_gui):
         self.sf = sf = 7
         self.samp_rate = samp_rate = 1e6
         self.bw = bw = 125000
-        self.target_freq = target_freq = [902.3e6, 902.5e6, 902.7e6, 902.9e6, 903.1e6, 903.3e6, 903.5e6, 903.7e6, 903.9e6, 904.1e6]
+        self.target_freq = target_freq = [902.3e6]#, 902.5e6, 902.7e6, 902.9e6, 903.1e6, 903.3e6, 903.5e6, 903.7e6, 903.9e6, 904.1e6]
         self.hop_interval = hop_interval = 1000 # 1 second hop interval
         self.freq_index = freq_index = 0
         
