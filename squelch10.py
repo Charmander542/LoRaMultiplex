@@ -62,41 +62,9 @@ class squelch10(grc_wxgui.top_block_gui):
         self.bitrate = bitrate = sf * (1 / (2**sf / float(bw)))
         self.atten = atten = 60
 
-        ##################################################
+            ##################################################
         # Blocks
         ##################################################
-        self.wxgui_fftsink2_1_1 = fftsink2.fft_sink_c(
-        	self.GetWin(),
-        	baseband_freq=target_freq,
-        	y_per_div=10,
-        	y_divs=10,
-        	ref_level=0,
-        	ref_scale=2.0,
-        	sample_rate=samp_rate,
-        	fft_size=1024,
-        	fft_rate=15,
-        	average=False,
-        	avg_alpha=None,
-        	title='FFT Plot',
-        	peak_hold=False,
-        )
-        self.Add(self.wxgui_fftsink2_1_1.win)
-        self.wxgui_fftsink2_1_0 = fftsink2.fft_sink_c(
-        	self.GetWin(),
-        	baseband_freq=910.5e6,
-        	y_per_div=10,
-        	y_divs=10,
-        	ref_level=0,
-        	ref_scale=2.0,
-        	sample_rate=ch_rate,
-        	fft_size=1024,
-        	fft_rate=15,
-        	average=False,
-        	avg_alpha=None,
-        	title='FFT Plot',
-        	peak_hold=False,
-        )
-        self.Add(self.wxgui_fftsink2_1_0.win)
         self.wxgui_fftsink2_1 = fftsink2.fft_sink_c(
         	self.GetWin(),
         	baseband_freq=target_freq,
@@ -122,7 +90,7 @@ class squelch10(grc_wxgui.top_block_gui):
         )
         self.uhd_usrp_source_0.set_samp_rate(samp_rate)
         self.uhd_usrp_source_0.set_center_freq(capture_freq, 0)
-        self.uhd_usrp_source_0.set_gain(40, 0)
+        self.uhd_usrp_source_0.set_gain(80, 0)
         self.rational_resampler_xxx_0 = filter.rational_resampler_ccc(
                 interpolation=5,
                 decimation=4,
@@ -155,7 +123,6 @@ class squelch10(grc_wxgui.top_block_gui):
         ##################################################
         self.connect((self.analog_pwr_squelch_xx_0, 0), (self.blocks_add_xx_0, 0))
         self.connect((self.analog_pwr_squelch_xx_0_0, 0), (self.blocks_add_xx_0, 1))
-        self.connect((self.analog_pwr_squelch_xx_0_0, 0), (self.wxgui_fftsink2_1_0, 0))
         self.connect((self.analog_pwr_squelch_xx_0_0_0, 0), (self.blocks_add_xx_0, 2))
         self.connect((self.analog_pwr_squelch_xx_0_0_1, 0), (self.blocks_add_xx_0, 3))
         self.connect((self.analog_pwr_squelch_xx_0_0_2, 0), (self.blocks_add_xx_0, 4))
@@ -178,8 +145,6 @@ class squelch10(grc_wxgui.top_block_gui):
         self.connect((self.rational_resampler_xxx_0, 0), (self.lora_lora_receiver_0, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.pfb_channelizer_ccf_0, 0))
         self.connect((self.uhd_usrp_source_0, 0), (self.wxgui_fftsink2_1, 0))
-        self.connect((self.uhd_usrp_source_0, 0), (self.wxgui_fftsink2_1_1, 0))
-
     def get_channels(self):
         return self.channels
 
@@ -193,7 +158,7 @@ class squelch10(grc_wxgui.top_block_gui):
     def set_ch_rate(self, ch_rate):
         self.ch_rate = ch_rate
         self.set_samp_rate(self.ch_rate*self.channels)
-        self.wxgui_fftsink2_1_0.set_sample_rate(self.ch_rate)
+        self.wxgui_fftsink2_1.set_sample_rate(self.ch_rate)
         self.set_ch_bw(self.ch_rate/2)
 
     def get_sf(self):
@@ -210,7 +175,6 @@ class squelch10(grc_wxgui.top_block_gui):
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
         self.set_taps(firdes.low_pass(1, self.samp_rate, self.ch_bw, self.ch_tb, firdes.WIN_HAMMING))
-        self.wxgui_fftsink2_1_1.set_sample_rate(self.samp_rate)
         self.wxgui_fftsink2_1.set_sample_rate(self.samp_rate)
         self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
         self.set_firdes_tap(firdes.low_pass(1, self.samp_rate, self.bw, 10000, firdes.WIN_HAMMING, 6.67))
@@ -259,7 +223,6 @@ class squelch10(grc_wxgui.top_block_gui):
 
     def set_target_freq(self, target_freq):
         self.target_freq = target_freq
-        self.wxgui_fftsink2_1_1.set_baseband_freq(self.target_freq)
         self.wxgui_fftsink2_1.set_baseband_freq(self.target_freq)
 
     def get_taps(self):
