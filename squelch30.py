@@ -51,14 +51,14 @@ class squelch30(grc_wxgui.top_block_gui):
         self.ch_bw = ch_bw = ch_rate/2
         self.bw = bw = 125000
         self.thresh = thresh = -90
-        self.target_freq = target_freq = 905.3e3
+        self.target_freq = target_freq = 905.3e6
         self.taps = taps = firdes.low_pass(1, samp_rate, ch_bw, ch_tb, firdes.WIN_HAMMING)
         self.symbols_per_sec = symbols_per_sec = float(bw) / (2**sf)
         self.firdes_tap = firdes_tap = firdes.low_pass(1, samp_rate, bw, 10000, firdes.WIN_HAMMING, 6.67)
         self.downlink = downlink = False
         self.delay = delay = int(150e3)
         self.decimation = decimation = 1
-        self.capture_freq = capture_freq = 905.3e3
+        self.capture_freq = capture_freq = 905.3e6
         self.bitrate = bitrate = sf * (1 / (2**sf / float(bw)))
         self.atten = atten = 60
 
