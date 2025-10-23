@@ -44,7 +44,7 @@ class squelch20(grc_wxgui.top_block_gui):
         # Variables
         ##################################################
         self.channels = channels = 20
-        self.ch_rate = ch_rate = 200e3
+        self.ch_rate = ch_rate = 200e2
         self.sf = sf = 11
         self.samp_rate = samp_rate = ch_rate*channels
         self.ch_tb = ch_tb = 20e3
