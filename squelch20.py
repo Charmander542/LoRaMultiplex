@@ -44,7 +44,7 @@ class squelch20(grc_wxgui.top_block_gui):
         # Variables
         ##################################################
         self.channels = channels = 20
-        self.ch_rate = ch_rate = 200e2
+        self.ch_rate = ch_rate = 200e3
         self.sf = sf = 11
         self.samp_rate = samp_rate = ch_rate*channels
         self.ch_tb = ch_tb = 20e3
@@ -82,7 +82,7 @@ class squelch20(grc_wxgui.top_block_gui):
         )
         self.Add(self.wxgui_fftsink2_1.win)
         self.uhd_usrp_source_0 = uhd.usrp_source(
-        	",".join(("serial=3134BCA", "")),
+        	",".join(("serial=3152EE6", "")),
         	uhd.stream_args(
         		cpu_format="fc32",
         		channels=range(1),
