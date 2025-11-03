@@ -50,7 +50,7 @@ class squelch20(grc_wxgui.top_block_gui):
         self.ch_tb = ch_tb = 20e3
         self.ch_bw = ch_bw = ch_rate/2
         self.bw = bw = 125000
-        self.thresh = thresh = -80
+        self.thresh = thresh = -90
         self.target_freq = target_freq = 904.3e6
         self.taps = taps = firdes.low_pass(1, samp_rate, ch_bw, ch_tb, firdes.WIN_HAMMING)
         self.symbols_per_sec = symbols_per_sec = float(bw) / (2**sf)
